@@ -1,0 +1,118 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">{{ titulo }}</h5>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body pt-0" [formGroup]="formulario">
+    <form>
+     <div class="row">
+       <div class="col-md-10">
+         <label class="col-form-label-sm" for="nome">
+           <b>Nome da Rota</b>
+         </label>
+         <input
+         type="text"
+         class="form-control form-control-sm"
+         id="nome" name="nome"
+         maxlength="200"
+         [formControl]="nomeFormControl"
+         placement="top-left"
+         [disableTooltip]="desabilitaTooltip(nomeFormControl)"
+         [ngbTooltip]="validacaoNome"
+         maxlength="200"/>
+           <ng-template #validacaoNome>
+             <span *ngIf="nomeFormControl.invalid && nomeFormControl.errors.required">
+               Campo obrigatório
+             </span>
+             <span *ngIf="nomeFormControl.invalid && nomeFormControl.errors.maxlength">
+               O nome não pode ter mais de 200 caracteres
+             </span>
+           </ng-template>
+       </div>
+     </div>   
+
+
+     <div class="row">
+       <div class="col-md-10">
+         <label class="col-form-label-sm" for="nome">
+           <b>Composição da Rota:</b>
+         </label>
+         <input
+           type="text"
+           class="form-control form-control-sm"
+           id="composicao" name="composicao"
+           maxlength="50"
+           [formControl]="composicaoRotaFormControl"
+           placement="top-left"
+           [disableTooltip]="desabilitaTooltip(composicaoRotaFormControl)"
+           [ngbTooltip]="validacaoComposicao" />
+         <ng-template #validacaoComposicao>
+           <span *ngIf="composicaoRotaFormControl.invalid && composicaoRotaFormControl.errors.required">
+             Campo obrigatório
+           </span>
+           <span *ngIf="composicaoRotaFormControl.invalid && composicaoRotaFormControl.errors.maxlength">
+             O nome não pode ter mais de 200 caracteres
+           </span>
+         </ng-template>
+       </div>
+     </div>
+
+     <div class="col-md-3 pl-1 mt-3 form-group">
+        <div class="form-check">
+          <input class="form-check-input align-self-end form-inline"
+          type="radio"
+          name="ativo-inativo"
+          id="ativo"
+          value="true"
+          [formControl]="ativoAdcinalFormControl">
+          <label class="form-check-label col-form-label-sm font-xs pr-1 pl-1" for="ativo">
+            Ativo
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input align-self-end form-inline"
+          type="radio"
+          name="ativo-inativo"
+          id="inativo"
+          value="false"
+          [formControl]="ativoAdcinalFormControl">
+          <label class="form-check-label col-form-label-sm font-xs pr-1 pl-1" for="inativo">
+            Inativo
+          </label>
+        </div>
+      </div>
+
+     <div class="row pt-3">
+       <div class="col-md-10">
+         <label class="col-form-label-sm" for="ajudanteAdicionais">
+           <b>Observações:</b>
+         </label>
+         <textarea rows="5"
+           class="form-control form-control-sm"
+           id="enderecosAdicionais" name="enderecosAdicionais"
+           maxlength="800"
+           [formControl]="observacaoFormControl"
+           placement="top-left"
+           [disableTooltip]="desabilitaTooltip(observacaoFormControl)"
+           [ngbTooltip]="validacaoEnderecosAdicionais"
+           maxlength="800">
+           </textarea>
+         <ng-template #validacaoEnderecosAdicionais>
+           <span *ngIf="observacaoFormControl.invalid && observacaoFormControl.errors.maxlength">
+             Os endereços adicionais não podem ter mais de 800 caracteres
+           </span>
+         </ng-template>
+         <span style="font-size:11px;" class="float-right">{{ observacaoFormControl.value ? (800  - observacaoFormControl.value.length) : 800  }}/800  caracteres restantes</span>
+       </div>
+     </div>      
+
+      
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-link" aria-label="Close" (click)="activeModal.dismiss()">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Confirmar</button>
+  </div>
+  
+  

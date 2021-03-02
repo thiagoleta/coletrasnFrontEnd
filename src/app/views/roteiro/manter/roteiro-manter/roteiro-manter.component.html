@@ -1,0 +1,188 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">{{titulo}}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close('cancel')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+
+        <div class="col-md-12">
+            <label class="col-form-label-sm" for="acao">
+              Ação:
+            </label>
+            <ng-select
+              [ngStyle]="{'fontSize': '11px'}"
+              id="acao"
+              name="acao"
+              [virtualScroll]="true"
+              [items]="clientes"
+              bindLabel="nomeCompleto_RazaoSocial"
+              bindValue="cod_Cliente"
+              notFoundText="Nenhuma opção disponível"
+              [searchable]="true"
+              [clearable]="false"
+              placeholder="Selecione uma opção"
+              [formControl]="clienteFormControl"
+              [ngbTooltip]="validacaoAcao"
+              placement="top-left"
+              [disableTooltip]="desabilitaTooltip(clienteFormControl)"
+            >
+            </ng-select>
+            <ng-template #validacaoAcao>
+              <span *ngIf="clienteFormControl.invalid && clienteFormControl.errors.required">
+                Campo Obrigatório.
+              </span>
+            </ng-template>
+          </div>
+        </div>
+
+
+
+      <div class="row">
+        <div class="col-md-12">
+            <label>Selecione o Cliente</label>
+      <select name="idPaciente" ngModel class="form-control col-md-12">
+          <option value="">Escolha uma opção</option>
+          <option *ngFor="let item of clientes"
+                  value={{item.cod_Cliente}}>
+                 {{item.nomeCompleto_RazaoSocial}}
+          </option>
+          <ng-template #validacaoCliente>
+            <span *ngIf="clienteFormControl.invalid && clienteFormControl.errors.required">
+              Campo Obrigatório.
+            </span>
+          </ng-template>
+      </select>
+      <br/> 
+
+
+      <div class="row">
+        <div class="col-md-12">
+            <label>Selecione o Turno</label>
+      <select name="idTurno" ngModel class="form-control col-md-12">
+          <option value="">Escolha uma opção</option>
+          <option *ngFor="let item of turnos"
+                  value={{item.cod_Turno}}>
+                 {{item.nome_Turno}}
+          </option>
+          <ng-template #validacaoCliente>
+            <span *ngIf="turnoFormControl.invalid && turnoFormControl.errors.required">
+              Campo Obrigatório.
+            </span>
+          </ng-template>
+      </select>
+      <br/> 
+
+      <div class="row">
+        <div class="col-md-12">
+            <label>Selecione o Motorista</label>
+      <select name="idMotorista" ngModel class="form-control col-md-12">
+          <option value="">Escolha uma opção</option>
+          <option *ngFor="let item of motoristas"
+                  value={{item.cod_Motorista}}>
+                 {{item.nome}}
+          </option>
+          <ng-template #validacaoCliente>
+            <span *ngIf="motoristaFormControl.invalid && motoristaFormControl.errors.required">
+              Campo Obrigatório.
+            </span>
+          </ng-template>
+      </select>
+      <br/> 
+
+      
+      <div class="row">
+        <div class="col-md-12">
+            <label>Selecione a Rota</label>
+      <select name="idRota" ngModel class="form-control col-md-12">
+          <option value="">Escolha uma opção</option>
+          <option *ngFor="let item of motoristas"
+                  value={{item.cod_Rota}}>
+                 {{item.nome}}
+          </option>
+          <ng-template #validacaoCliente>
+            <span *ngIf="rotaFormControl.invalid && rotaFormControl.errors.required">
+              Campo Obrigatório.
+            </span>
+          </ng-template>
+      </select>
+      <br/> 
+
+            
+      <div class="row">
+        <div class="col-md-12">
+            <label>Selecione o Material</label>
+      <select name="idMaterial" ngModel class="form-control col-md-12">
+          <option value="">Escolha uma opção</option>
+          <option *ngFor="let item of materiais"
+                  value={{item.cod_Material}}>
+                  {{item.descricao}}
+          </option>
+          <ng-template #validacaoCliente>
+            <span *ngIf="materialFormControl.invalid && materialFormControl.errors.required">
+              Campo Obrigatório.
+            </span>
+          </ng-template>
+      </select>
+      <br/> 
+
+      <label>Segunda:</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="true"  checked>
+        <label class="form-check-label" for="inlineRadio1">Sim</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false">
+        <label class="form-check-label" for="inlineRadio2">Não</label>
+      </div>
+     
+
+
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <label class="col-form-label-sm font-weight-bold" for="comentario">
+            Observação:
+          </label>
+          <textarea
+            rows="5"
+            class="form-control form-control-sm"
+            id="comentario" name="comentario" maxlength="800"
+            [formControl]="observacaoFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(observacaoFormControl)"
+            [ngbTooltip]="validacaoTexto">
+          </textarea>
+          <ng-template #validacaoTexto>
+            <span *ngIf="observacaoFormControl.invalid && observacaoFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="observacaoFormControl.invalid && observacaoFormControl.errors.maxlength">
+               A observação não pode ter mais de 800 caracteres
+            </span>
+            </ng-template>
+            <span style="font-size:11px;" class="float-right">
+              {{ 800 - observacaoFormControl.value?.length  }}/800 caracteres
+               restantes </span>
+        </div>
+      </div>
+    </div> 
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-link" data-dismiss="modal" (click)="activeModal.close('cancel')">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" >Confirmar</button>
+      </div>
+        
+      </div>
+
+      
+      
+  
+
+  
+ 
+
+  
+  
+  

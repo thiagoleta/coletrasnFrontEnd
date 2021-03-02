@@ -1,0 +1,9 @@
+.ng-select.custom {
+    border:1px solid rgba(0, 0, 0, 0.15);
+    height: 38px;
+    border-radius: 0.25rem;
+    background-color: white;
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    font-family: sans-serif;
+    }

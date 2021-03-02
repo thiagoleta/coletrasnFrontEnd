@@ -1,0 +1,505 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">{{ titulo }}</h5>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body pt-0" [formGroup]="formulario">
+    <form>
+     <div class="row">
+       <div class="col-md-10">
+         <label class="col-form-label-sm" for="cpfCnpj">
+           <b>CPF/CNPJ:</b>
+         </label>
+         <input
+         type="text"
+         class="form-control form-control-sm"
+         id="cpfCnpj" name="cpfCnpj"
+         maxlength="20"
+         [formControl]="cpfCnpjFormControl"
+         placement="top-left"
+         [disableTooltip]="desabilitaTooltip(cpfCnpjFormControl)"
+         [ngbTooltip]="validacaoCpfCnpj"
+         maxlength="20"/>
+           <ng-template #validacaoCpfCnpj>
+             <span *ngIf="cpfCnpjFormControl.invalid && cpfCnpjFormControl.errors.required">
+               Campo obrigatório
+             </span>
+             <span *ngIf="cpfCnpjFormControl.invalid && cpfCnpjFormControl.errors.maxlength">
+               O nome não pode ter mais de 20 caracteres
+             </span>
+           </ng-template>
+       </div>
+     </div>   
+
+
+     <div class="row">
+       <div class="col-md-10">
+         <label class="col-form-label-sm" for="nomeCompleto">
+           <b>Nome Completo do Cliente:</b>
+         </label>
+         <input
+           type="text"
+           class="form-control form-control-sm"
+           id="nomeCompleto" name="nomeCompleto"
+           maxlength="250"
+           [formControl]="nomeCompletoFormControl"
+           placement="top-left"
+           [disableTooltip]="desabilitaTooltip(nomeCompletoFormControl)"
+           [ngbTooltip]="validacaoComposicao" />
+         <ng-template #validacaoComposicao>
+           <span *ngIf="nomeCompletoFormControl.invalid && nomeCompletoFormControl.errors.required">
+             Campo obrigatório
+           </span>
+           <span *ngIf="nomeCompletoFormControl.invalid && nomeCompletoFormControl.errors.maxlength">
+             O nome não pode ter mais de 250 caracteres
+           </span>
+         </ng-template>
+       </div>
+     </div>
+
+
+     <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="fantasia">
+            <b>Fantasia:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="fantasia" name="fantasia"
+            maxlength="250"
+            [formControl]="fantasiaFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(fantasiaFormControl)"
+            [ngbTooltip]="validacaoFantasia" />
+          <ng-template #validacaoFantasia>
+            <span *ngIf="fantasiaFormControl.invalid && fantasiaFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="fantasiaFormControl.invalid && fantasiaFormControl.errors.maxlength">
+              O nome não pode ter mais de 250 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+      
+     <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="fantasia">
+            <b>Fantasia:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="fantasia" name="fantasia"
+            maxlength="250"
+            [formControl]="fantasiaFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(fantasiaFormControl)"
+            [ngbTooltip]="validacaoFantasia" />
+          <ng-template #validacaoFantasia>
+            <span *ngIf="fantasiaFormControl.invalid && fantasiaFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="fantasiaFormControl.invalid && fantasiaFormControl.errors.maxlength">
+              O nome não pode ter mais de 250 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+ 
+      
+     <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="inscricaoEstadual">
+            <b>Inscrição Estadual:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="inscricaoEstadual" name="inscricaoEstadual"
+            maxlength="10"
+            [formControl]="InscEstadualFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(InscEstadualFormControl)"
+            [ngbTooltip]="validacaoInscricao" />
+          <ng-template #validacaoInscricao>
+            <span *ngIf="InscEstadualFormControl.invalid && InscEstadualFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="InscEstadualFormControl.invalid && InscEstadualFormControl.errors.maxlength">
+              O nome não pode ter mais de 10 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+       
+     <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="logradouro">
+            <b>Logradouro:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="logradouro" name="logradouro"
+            maxlength="500"
+            [formControl]="logradouroFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(logradouroFormControl)"
+            [ngbTooltip]="validacaoLogradouro" />
+          <ng-template #validacaoLogradouro>
+            <span *ngIf="logradouroFormControl.invalid && logradouroFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="logradouroFormControl.invalid && logradouroFormControl.errors.maxlength">
+              O nome não pode ter mais de 500 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+             
+     <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="logradouro">
+            <b>Endereço:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="endereco" name="endereco"
+            maxlength="500"
+            [formControl]="enderecoFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(enderecoFormControl)"
+            [ngbTooltip]="validacaoEndereco" />
+          <ng-template #validacaoEndereco>
+            <span *ngIf="enderecoFormControl.invalid && enderecoFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="enderecoFormControl.invalid && enderecoFormControl.errors.maxlength">
+              O nome não pode ter mais de 500 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+             
+     <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="bairro">
+            <b>Bairro:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="bairro" name="bairro"
+            maxlength="300"
+            [formControl]="bairroFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(bairroFormControl)"
+            [ngbTooltip]="validacaoEndereco" />
+          <ng-template #validacaoEndereco>
+            <span *ngIf="bairroFormControl.invalid && bairroFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="bairroFormControl.invalid && bairroFormControl.errors.maxlength">
+              O nome não pode ter mais de 300 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+              
+     <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="Complemento">
+            <b>Complemento:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="Complemento" name="Complemento"
+            maxlength="200"
+            [formControl]="complementoFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(complementoFormControl)"
+            [ngbTooltip]="validacaoEndereco" />
+          <ng-template #validacaoEndereco>
+            <span *ngIf="complementoFormControl.invalid && complementoFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="complementoFormControl.invalid && complementoFormControl.errors.maxlength">
+              O nome não pode ter mais de 200 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+              
+     <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="Cidade">
+            <b>Cidade:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="Cidade" name="Cidade"
+            maxlength="200"
+            [formControl]="cidadeFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(cidadeFormControl)"
+            [ngbTooltip]="validacaoCidade"/>
+          <ng-template #validacaoCidade>
+            <span *ngIf="cidadeFormControl.invalid && cidadeFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="cidadeFormControl.invalid && cidadeFormControl.errors.maxlength">
+              O nome não pode ter mais de 200 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="cep">
+            <b>CEP:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="cep" name="cep"
+            maxlength="20"
+            [formControl]="cepFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(cepFormControl)"
+            [ngbTooltip]="validacaoCidade"/>
+          <ng-template #validacaoCidade>
+            <span *ngIf="cepFormControl.invalid && cepFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="cepFormControl.invalid && cepFormControl.errors.maxlength">
+              O nome não pode ter mais de 20 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+      
+      <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="cep">
+            <b>CEP:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="cep" name="cep"
+            maxlength="200"
+            [formControl]="cidadeFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(cidadeFormControl)"
+            [ngbTooltip]="validacaoCidade"/>
+          <ng-template #validacaoCidade>
+            <span *ngIf="cidadeFormControl.invalid && cidadeFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="cidadeFormControl.invalid && cidadeFormControl.errors.maxlength">
+              O nome não pode ter mais de 200 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+      
+      <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="uf">
+            <b>UF:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="uf" name="uf"
+            maxlength="200"
+            [formControl]="ufFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(ufFormControl)"
+            [ngbTooltip]="validacaoUf"/>
+          <ng-template #validacaoUf>
+            <span *ngIf="ufFormControl.invalid && ufFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="ufFormControl.invalid && ufFormControl.errors.maxlength">
+              O nome não pode ter mais de 20 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+      
+     <div class="row pt-3">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="telefones">
+            <b>Telefones:</b>
+          </label>
+          <textarea rows="5"
+            class="form-control form-control-sm"
+            id="telefones" name="telefones"
+            maxlength="800"
+            [formControl]="telefoneFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(observacaoFormControl)"
+            [ngbTooltip]="validacaoTelefones"
+            maxlength="500">
+            </textarea>
+          <ng-template #validacaoTelefones>
+            <span *ngIf="telefoneFormControl.invalid && telefoneFormControl.errors.maxlength">
+              Os endereços adicionais não podem ter mais de 500 caracteres
+            </span>
+          </ng-template>
+          <span style="font-size:11px;" class="float-right">{{ telefoneFormControl.value ? (500  - telefoneFormControl.value.length) : 500  }}/500  caracteres restantes</span>
+        </div>
+      </div>     
+
+      <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="funcao">
+            <b>Função:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="funcao" name="funcao"
+            maxlength="250"
+            [formControl]="funcaoFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(funcaoFormControl)"
+            [ngbTooltip]="validacaoFuncao"/>
+          <ng-template #validacaoFuncao>
+            <span *ngIf="funcaoFormControl.invalid && funcaoFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="funcaoFormControl.invalid && funcaoFormControl.errors.maxlength">
+              O nome não pode ter mais de 250 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="email">
+            <b>Email:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="email" name="email"
+            maxlength="100"
+            [formControl]="emailFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(emailFormControl)"
+            [ngbTooltip]="validacaoFuncao"/>
+          <ng-template #validacaoFuncao>
+            <span *ngIf="emailFormControl.invalid && emailFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="emailFormControl.invalid && emailFormControl.errors.maxlength">
+              O nome não pode ter mais de 100 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+
+     <div class="col-md-3 pl-1 mt-3 form-group">
+        <div class="form-check">
+          <input class="form-check-input align-self-end form-inline"
+          type="radio"
+          name="ativo-inativo"
+          id="ativo"
+          value="true"
+          [formControl]="flagFormControl">
+          <label class="form-check-label col-form-label-sm font-xs pr-1 pl-1" for="ativo">
+            Ativo
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input align-self-end form-inline"
+          type="radio"
+          name="ativo-inativo"
+          id="inativo"
+          value="false"
+          [formControl]="flagFormControl">
+          <label class="form-check-label col-form-label-sm font-xs pr-1 pl-1" for="inativo">
+            Inativo
+          </label>
+        </div>
+      </div>
+
+     <div class="row pt-3">
+       <div class="col-md-10">
+         <label class="col-form-label-sm" for="ajudanteAdicionais">
+           <b>Observações:</b>
+         </label>
+         <textarea rows="5"
+           class="form-control form-control-sm"
+           id="enderecosAdicionais" name="enderecosAdicionais"
+           maxlength="500"
+           [formControl]="observacaoFormControl"
+           placement="top-left"
+           [disableTooltip]="desabilitaTooltip(observacaoFormControl)"
+           [ngbTooltip]="validacaoEnderecosAdicionais"
+           maxlength="500">
+           </textarea>
+         <ng-template #validacaoEnderecosAdicionais>
+           <span *ngIf="observacaoFormControl.invalid && observacaoFormControl.errors.maxlength">
+             Os endereços adicionais não podem ter mais de 500 caracteres
+           </span>
+         </ng-template>
+         <span style="font-size:11px;" class="float-right">{{ observacaoFormControl.value ? (800  - observacaoFormControl.value.length) : 500  }}/500  caracteres restantes</span>
+       </div>
+     </div>      
+
+     <div class="row pt-3">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="referancia">
+            <b>Referência:</b>
+          </label>
+          <textarea rows="3"
+            class="form-control form-control-sm"
+            id="referancia" name="referancia"
+            maxlength="300"
+            [formControl]="referenciaFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(referenciaFormControl)"
+            [ngbTooltip]="validacaoReferencia"
+            maxlength="300">
+            </textarea>
+          <ng-template #validacaoReferencia>
+            <span *ngIf="referenciaFormControl.invalid && referenciaFormControl.errors.maxlength">
+              A Referência não podem ter mais de 300 caracteres
+            </span>
+          </ng-template>
+          <span style="font-size:11px;" class="float-right">{{ referenciaFormControl.value ? (300  - referenciaFormControl.value.length) : 300  }}/300  caracteres restantes</span>
+        </div>
+      </div>      
+ 
+
+      
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-link" aria-label="Close" (click)="activeModal.dismiss()">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Confirmar</button>
+  </div>
+  
+  

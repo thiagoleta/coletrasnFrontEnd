@@ -1,0 +1,18 @@
+<app-manutencao
+  [tituloAdicionar]="tituloAdicionar"
+  [tituloLista]="tituloLista"
+  [titulo]="titulo"
+  [breadcrump]="breadcrump"
+  [colunas]="colunas"
+  [registros]="obterResultados"  
+  [totalDeRegistros]="totalDeRegistros"
+  [(pagina)]="pagina"
+  [(ordenacaoColuna)]="ordenacaoColuna"
+  [(ordenacaoDirecao)]="ordenacaoDirecao"
+  [(totalDeRegistrosPorPagina)]="totalDeRegistrosPorPagina"
+  (aoClicarNovoRegistro)="abrirDialogoDeCriar()"
+  (aoClicarEditarRegistro)="abrirDialogoDeAtualizar($event.cod_MesReferencia)"
+  (aoRemoverRegistro)="remover($event.cod_MesReferencia)"
+  (aoCarregarRegistros)="obter()"
+  (aoClicarExportar)="exportar()">
+</app-manutencao>

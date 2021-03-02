@@ -1,0 +1,25 @@
+<h4>Autenticação de Usuário</h4>
+<br/>
+
+<form #formAcesso="ngForm" (submit)="autenticarUsuario(formAcesso)">
+
+    <label>Email de Acesso:</label>
+    <input type="text" class="form-control col-md-4" 
+           placeholder="Digite aqui" name="email" ngModel />
+    <br/>
+
+    <label>Senha de Acesso:</label>
+    <input type="password" class="form-control col-md-4" 
+           placeholder="Digite aqui" name="senha" ngModel />
+    <br/>
+
+    <input type="submit" class="btn btn-success" value="Logar"/>    
+
+    <br/>
+    <br/>
+
+    <strong>{{mensagemAcesso}}</strong>
+
+</form>
+
+

@@ -1,0 +1,117 @@
+<div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel">{{ titulo }}</h5>
+       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body pt-0" [formGroup]="formulario">
+       <form>
+        <div class="row">
+          <div class="col-md-10">
+            <label class="col-form-label-sm" for="cnpj">
+              <b>Descrição do Material::</b>
+            </label>
+            <input
+            type="text"
+            class="form-control form-control-sm"
+            id="nome" name="nome"
+            maxlength="200"
+            [formControl]="descricaoFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(descricaoFormControl)"
+            [ngbTooltip]="validacaoDescricao"
+            maxlength="200"/>
+              <ng-template #validacaoDescricao>
+                <span *ngIf="descricaoFormControl.invalid && descricaoFormControl.errors.required">
+                  Campo obrigatório
+                </span>
+                <span *ngIf="descricaoFormControl.invalid && descricaoFormControl.errors.maxlength">
+                  O nome não pode ter mais de 200 caracteres
+                </span>
+              </ng-template>
+          </div>
+        </div>    
+
+        <div class="row">
+          <div class="col-md-10">
+            <label class="col-form-label-sm" for="nome">
+              <b>Volume:</b>
+            </label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="volume" name="volume"
+              maxlength="20"
+              [formControl]="volumeFormControl"
+              placement="top-left"
+              [disableTooltip]="desabilitaTooltip(volumeFormControl)"
+              [ngbTooltip]="validacaoNome" />
+            <ng-template #validacaoNome>
+              <span *ngIf="volumeFormControl.invalid && volumeFormControl.errors.required">
+                Campo obrigatório
+              </span>
+              <span *ngIf="volumeFormControl.invalid && volumeFormControl.errors.maxlength">
+                O nome não pode ter mais de 20 caracteres
+              </span>
+            </ng-template>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10">
+            <label class="col-form-label-sm" for="nome">
+              <b>Material coletado Descrição:</b>
+            </label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="volume" name="volume"
+              maxlength="150"
+              [formControl]="materialColetadoFormControl"
+              placement="top-left"
+              [disableTooltip]="desabilitaTooltip(materialColetadoFormControl)"
+              [ngbTooltip]="validacaoNome"
+              maxlength="150" />
+            <ng-template #validacaoNome>
+              <span *ngIf="materialColetadoFormControl.invalid && materialColetadoFormControl.errors.required">
+                Campo obrigatório
+              </span>
+              <span *ngIf="materialColetadoFormControl.invalid && materialColetadoFormControl.errors.maxlength">
+                O nome não pode ter mais de 150 caracteres
+              </span>
+            </ng-template>
+          </div>
+        </div>
+
+        <div class="row pt-3">
+          <div class="col-md-10">
+            <label class="col-form-label-sm" for="enderecosAdicionais">
+              <b>Observações:</b>
+            </label>
+            <textarea rows="5"
+              class="form-control form-control-sm"
+              id="enderecosAdicionais" name="enderecosAdicionais"
+              maxlength="800"
+              [formControl]="observacaoFormControl"
+              placement="top-left"
+              [disableTooltip]="desabilitaTooltip(observacaoFormControl)"
+              [ngbTooltip]="validacaoEnderecosAdicionais"
+              maxlength="800">
+              </textarea>
+            <ng-template #validacaoEnderecosAdicionais>
+              <span *ngIf="observacaoFormControl.invalid && observacaoFormControl.errors.maxlength">
+                Os endereços adicionais não podem ter mais de 800 caracteres
+              </span>
+            </ng-template>
+            <span style="font-size:11px;" class="float-right">{{ observacaoFormControl.value ? (800  - observacaoFormControl.value.length) : 800  }}/800  caracteres restantes</span>
+          </div>
+        </div>
+         
+       </form>
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-link" aria-label="Close" (click)="activeModal.dismiss()">Cancelar</button>
+       <button type="button" class="btn btn-primary" (click)="onSubmit()">Confirmar</button>
+     </div>
+     
+     

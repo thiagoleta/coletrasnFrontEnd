@@ -1,0 +1,175 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">{{titulo}}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close('cancel')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <label class="col-form-label-sm" for="acao">
+            Ação:
+          </label>        
+        <input
+        type="text"
+        class="form-control form-control-sm"
+        id="nome" name="nome"
+        maxlength="200"
+        [formControl]="mesAnoFormControl"
+        placement="top-left"
+        [disableTooltip]="desabilitaTooltip(mesAnoFormControl)"
+        [ngbTooltip]="validacaoNome"
+        maxlength="200"/>
+          <ng-template #validacaoNome>
+            <span *ngIf="mesAnoFormControl.invalid && mesAnoFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="mesAnoFormControl.invalid && mesAnoFormControl.errors.maxlength">
+              O nome não pode ter mais de 200 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="row mt-3">     
+        <div class="col-md-6">
+          <label class="col-form-label-sm" for="dataInicio">
+            Data Inicio Referência:
+          </label>
+          <div class="form-group">
+            <div class="form-inline">
+          <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="DD/MM/AAAA"
+                rInputMask="99/99/9999"
+                name="data"
+                id="data"
+                [formControl]="dataInicioFormControl"
+                [bsConfig]="{ showWeekNumbers: false }"
+                bsDatepicker
+                #data="bsDatepicker"
+                style="width: 100px;"
+                placement="top-left top-right bottom-left bottom-right"
+                [disableTooltip]="desabilitaTooltip(dataInicioFormControl)"
+                [ngbTooltip]="validacao" />
+              <div class="input-group-append">
+                <button
+                  type="button"
+                  class="btn btn btn-outline-secondary calendar"
+                  (click)="data.toggle()"
+                  [attr.aria-expanded]="data.isOpen"
+                  
+                  >
+                  <i class="far fa-calendar-alt"></i>
+                </button>
+              </div>
+              <ng-template #validacao>
+                <span *ngIf="dataInicioFormControl.invalid && dataInicioFormControl.errors.required">
+                  Campo obrigatório
+                </span>
+                <span *ngIf="dataInicioFormControl.invalid && dataInicioFormControl.errors.validDate">
+                  Data inválida
+                </span>
+                <span
+                  *ngIf="dataInicioFormControl.invalid && dataInicioFormControl.errors.bsDate && dataInicioFormControl.errors.bsDate.invalid">
+                  Data inválida
+                </span>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+
+
+
+      <div class="row mt-3">     
+        <div class="col-md-6">
+          <label class="col-form-label-sm" for="dataTermino">
+            Data Inicio Referência:
+          </label>
+          <div class="form-group">
+            <div class="form-inline">
+          <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="DD/MM/AAAA"
+                rInputMask="99/99/9999"
+                name="dataFim"
+                id="dataFim"
+                [formControl]="dataInicioTerminoFormControl"
+                [bsConfig]="{ showWeekNumbers: false }"
+                bsDatepicker
+                #dataFim="bsDatepicker"
+                style="width: 100px;"
+                placement="top-left top-right bottom-left bottom-right"
+                [disableTooltip]="desabilitaTooltip(dataInicioTerminoFormControl)"
+                [ngbTooltip]="validacaoFim" />
+              <div class="input-group-append">
+                <button
+                  type="button"
+                  class="btn btn btn-outline-secondary calendar"
+                  (click)="dataFim.toggle()"
+                  [attr.aria-expanded]="dataFim.isOpen"
+                  
+                  >
+                  <i class="far fa-calendar-alt"></i>
+                </button>
+              </div>
+              <ng-template #validacaoFim>
+                <span *ngIf="dataInicioTerminoFormControl.invalid && dataInicioTerminoFormControl.errors.required">
+                  Campo obrigatório
+                </span>
+                <span *ngIf="dataInicioTerminoFormControl.invalid && dataInicioTerminoFormControl.errors.validDate">
+                  Data inválida
+                </span>
+                <span
+                  *ngIf="dataInicioFormControl.invalid && dataInicioFormControl.errors.bsDate && dataInicioFormControl.errors.bsDate.invalid">
+                  Data inválida
+                </span>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+
+  
+      <div class="row mt-2">
+        <div class="col-md-12">
+            <div class="form-check">
+                <input class="form-check-input align-self-end form-inline"
+                type="radio"
+                name="ativo-inativo"
+                id="ativo"
+                value="true"
+                [formControl]="ativoFormControl">
+                <label class="form-check-label col-form-label-sm font-xs pr-1 pl-1" for="ativo">
+                  Ativo
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input align-self-end form-inline"
+                type="radio"
+                name="ativo-inativo"
+                id="inativo"
+                value="false"
+                [formControl]="ativoFormControl">
+                <label class="form-check-label col-form-label-sm font-xs pr-1 pl-1" for="inativo">
+                  Inativo
+                </label>
+              </div>
+
+      </div>
+    </div>
+  
+    <div class="modal-footer">
+        <button type="button" class="btn btn-link" (click)="activeModal.dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">Confirmar</button>
+      </div>
+  </div>
+  
+  
+  
+  

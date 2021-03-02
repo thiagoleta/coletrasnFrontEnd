@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  local_url: 'http://localhost:55628',
+  api_url: 'http://thiagoleta2-001-site1.htempurl.com',
 };
 
 /*
