@@ -68,6 +68,7 @@ async criarRoteiro(model: {
       cod_Cliente: model.cod_Cliente,
       cod_Turno: model.cod_Turno,
       cod_Rota: model.cod_Rota,
+      cod_Motorista: model.cod_Motorista,
       cod_Material: model.cod_Material,
       segunda: model.segunda,
       terca: model.terca,

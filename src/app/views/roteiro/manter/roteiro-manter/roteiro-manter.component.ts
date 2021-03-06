@@ -78,19 +78,19 @@ materiais: Array<any>;
      this.obterRotas();    
      this.obterMaterial();
     if (this.entidade) {
-      this.clienteFormControl.setValue(this.entidade.cliente ? this.entidade.cliente : null);
-      this.turnoFormControl.setValue(this.entidade.turno ? this.entidade.turno: null);
-      this.rotaFormControl.setValue(this.entidade.rota ? this.entidade.rota: null);
-      this.motoristaFormControl.setValue(this.entidade.motorista ? this.entidade.motorista : null);
-      this.materialFormControl.setValue(this.entidade.material ? this.entidade.material: null);
-      this.segudaFormControl.setValue(this.entidade.segunda ? this.entidade.segunda : null);
-      this.tercaFormControl.setValue(this.entidade.terca ? this.entidade.terca : null);
-      this.quartaFormControl.setValue(this.entidade.quarta ? this.entidade.quarta : null);
-      this.quintaFormControl.setValue(this.entidade.quinta ? this.entidade.quinta : null);
-      this.segudaFormControl.setValue(this.entidade.sexta ? this.entidade.sexta : null);
-      this.sabadoFormControl.setValue(this.entidade.sabado ? this.entidade.sabado : null);
-      this.domingoFormControl.setValue(this.entidade.domingo ? this.entidade.domingo : null);
-      this.observacaoFormControl.setValue(this.entidade.observacao ? this.entidade.observacao : null);  
+      this.clienteFormControl.setValue(this.entidade.cliente.cod_Cliente);
+      this.turnoFormControl.setValue(this.entidade.turno.cod_Turno);
+      this.rotaFormControl.setValue(this.entidade.rota.cod_Rota);
+      this.motoristaFormControl.setValue(this.entidade.motorista.cod_Motorista);
+      this.materialFormControl.setValue(this.entidade.material.cod_Material);
+      this.segudaFormControl.setValue(this.entidade.segunda);
+      this.tercaFormControl.setValue(this.entidade.terca);
+      this.quartaFormControl.setValue(this.entidade.quarta);
+      this.quintaFormControl.setValue(this.entidade.quinta);
+      this.segudaFormControl.setValue(this.entidade.sexta );
+      this.sabadoFormControl.setValue(this.entidade.sabado);
+      this.domingoFormControl.setValue(this.entidade.domingo);
+      this.observacaoFormControl.setValue(this.entidade.observacao);  
 
     }
   }
@@ -125,7 +125,10 @@ materiais: Array<any>;
   }
 
   async onSubmit() {
-
+    this.formulario.markAllAsTouched();
+    if (this.formulario.invalid) {
+      return;
+    }
 
     try {
       if (this.entidade) {
@@ -139,7 +142,6 @@ materiais: Array<any>;
       console.error(error);
     }
   }
-
 
   private async criar(): Promise<void> {
     try {
@@ -158,7 +160,7 @@ materiais: Array<any>;
         domingo: this.domingoFormControl.value,        
         observacao: this.observacaoFormControl.value,
       });
-      this.dialog.showAlert('Cadastro realizado com sucesso', 'O Material foi registrado no sistema.')
+      this.dialog.showAlert('Cadastro realizado com sucesso', 'O Roteiro foi registrado no sistema.')
       .then(() => this.activeModal.close(this.entidade));
     } catch (error) {
       this.dialog.showErr('Cadastro não realizado', (error as HttpErrorResult).messages.join('\n'));
@@ -172,11 +174,11 @@ materiais: Array<any>;
     try {
       await this.service.atualizarRoteiro({
         cod_Roteiro: this.entidade.cod_Roteiro,
-        cod_Cliente: this.clienteFormControl.value ? this.clienteFormControl.value : null,
-        cod_Turno: this.turnoFormControl.value? this.turnoFormControl.value : null,
-        cod_Rota: this.rotaFormControl.value? this.rotaFormControl.value : null,
-        cod_Motorista: this.motoristaFormControl.value? this.motoristaFormControl.value : null,
-        cod_Material: this.materialFormControl.value? this.materialFormControl.value : null,
+        cod_Cliente: this.clienteFormControl.value,
+        cod_Turno: this.turnoFormControl.value ? this.turnoFormControl.value : null,
+        cod_Rota: this.rotaFormControl.value ? this.rotaFormControl.value : null,
+        cod_Motorista: this.motoristaFormControl.value ? this.motoristaFormControl.value : null,
+        cod_Material: this.materialFormControl.value ? this.materialFormControl.value : null,
         segunda: this.segudaFormControl.value,
         terca: this.tercaFormControl.value,
         quarta: this.quartaFormControl.value,
@@ -186,7 +188,7 @@ materiais: Array<any>;
         domingo: this.domingoFormControl.value,
         observacao: this.observacaoFormControl.value,
       });
-      this.dialog.showAlert('Alteração realizada com sucesso', 'O Material foi alterado no sistema.')
+      this.dialog.showAlert('Alteração realizada com sucesso', 'O Roteiro foi alterado no sistema.')
       .then(() => this.activeModal.close(this.entidade));
     } catch (error) {
       this.dialog.showErr('Alteração não realizada', (error as HttpErrorResult).messages.join('\n'));
@@ -228,7 +230,7 @@ materiais: Array<any>;
   async obterRotas() {
     try {
       const rotasServico = await this.rotaService.obter();       
-      this.rotas = rotasServico.map((rota: any) =>  ({ cod_Rota: rota.cod_Rota, nome: rota.nome.toUpperCase()}));
+      this.rotas = rotasServico.map((rota: any) =>  ({ cod_Rota: rota.cod_Rota, nome: rota.nome.toUpperCase()}));      
     } catch (error) {
       await this.dialog.showErr('Erro ao obter Rotas', (error as HttpErrorResult).messages.join('\n'));
     }
@@ -237,8 +239,7 @@ materiais: Array<any>;
   async obterMaterial() {
     try {
       const materialServico = await this.materialService.obter();       
-      this.materiais = materialServico.map((material: any) =>  ({ cod_Material: material.cod_Material, descricao: material.descricao.toUpperCase()}));
-      console.log(this.materiais);  
+      this.materiais = materialServico.map((material: any) =>  ({ cod_Material: material.cod_Material, descricao: material.descricao.toUpperCase()}));       
     } catch (error) {
       await this.dialog.showErr('Erro ao obter Materiais', (error as HttpErrorResult).messages.join('\n'));
     }

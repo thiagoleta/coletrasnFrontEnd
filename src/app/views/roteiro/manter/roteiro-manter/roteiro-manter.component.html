@@ -1,188 +1,572 @@
 <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">{{titulo}}</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close('cancel')">
-        <span aria-hidden="true">&times;</span>
-      </button>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">{{titulo}}</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close('cancel')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <label class="col-form-label-sm" for="cliente">
+          Selecione o Cliente:
+        </label>
+        <ng-select
+          [ngStyle]="{'fontSize': '11px'}"
+          id="cliente"
+          name="cliente"
+          [virtualScroll]="true"
+          [items]="clientes"
+          bindLabel="nomeCompleto_RazaoSocial"
+          bindValue="cod_Cliente"
+          notFoundText="Nenhuma opção disponível"
+          [searchable]="true"
+          [clearable]="false"
+          placeholder="Selecione uma opção"
+          [formControl]="clienteFormControl"
+          [ngbTooltip]="validacaoCliente"
+          placement="top-left"
+          [disableTooltip]="desabilitaTooltip(clienteFormControl)"
+        >
+        </ng-select>
+        <ng-template #validacaoCliente>
+          <span *ngIf="clienteFormControl.invalid && clienteFormControl.errors.required">
+            Campo Obrigatório.
+          </span>
+        </ng-template>
+      </div>
+    </div>    
+
+    <div class="row mt-2">
+      <div class="col-md-12">
+        <label class="col-form-label-sm" for="turno">
+          Selecione o Turno:
+        </label>
+        <ng-select
+          [ngStyle]="{'fontSize': '11px'}"
+          id="turno"
+          name="turno"
+          [virtualScroll]="true"
+          [items]="turnos"
+          bindLabel="nome_Turno"
+          bindValue="cod_Turno"
+          notFoundText="Nenhuma opção disponível"
+          [searchable]="true"
+          [clearable]="false"
+          placeholder="Selecione uma opção"
+          placement="top-left"
+          [formControl]="turnoFormControl"
+          [ngbTooltip]="validacaoTurno"
+          [disableTooltip]="desabilitaTooltip(turnoFormControl)"
+        >
+        </ng-select>
+        <ng-template #validacaoTurno>
+          <span *ngIf="turnoFormControl.invalid && turnoFormControl.errors.required">
+            Campo Obrigatório.
+          </span>
+        </ng-template>
+      </div>
     </div>
-    <div class="modal-body">
 
-
-        <div class="col-md-12">
-            <label class="col-form-label-sm" for="acao">
-              Ação:
-            </label>
-            <ng-select
-              [ngStyle]="{'fontSize': '11px'}"
-              id="acao"
-              name="acao"
-              [virtualScroll]="true"
-              [items]="clientes"
-              bindLabel="nomeCompleto_RazaoSocial"
-              bindValue="cod_Cliente"
-              notFoundText="Nenhuma opção disponível"
-              [searchable]="true"
-              [clearable]="false"
-              placeholder="Selecione uma opção"
-              [formControl]="clienteFormControl"
-              [ngbTooltip]="validacaoAcao"
-              placement="top-left"
-              [disableTooltip]="desabilitaTooltip(clienteFormControl)"
-            >
-            </ng-select>
-            <ng-template #validacaoAcao>
-              <span *ngIf="clienteFormControl.invalid && clienteFormControl.errors.required">
-                Campo Obrigatório.
-              </span>
-            </ng-template>
-          </div>
-        </div>
-
-
-
-      <div class="row">
-        <div class="col-md-12">
-            <label>Selecione o Cliente</label>
-      <select name="idPaciente" ngModel class="form-control col-md-12">
-          <option value="">Escolha uma opção</option>
-          <option *ngFor="let item of clientes"
-                  value={{item.cod_Cliente}}>
-                 {{item.nomeCompleto_RazaoSocial}}
-          </option>
-          <ng-template #validacaoCliente>
-            <span *ngIf="clienteFormControl.invalid && clienteFormControl.errors.required">
-              Campo Obrigatório.
-            </span>
-          </ng-template>
-      </select>
-      <br/> 
-
-
-      <div class="row">
-        <div class="col-md-12">
-            <label>Selecione o Turno</label>
-      <select name="idTurno" ngModel class="form-control col-md-12">
-          <option value="">Escolha uma opção</option>
-          <option *ngFor="let item of turnos"
-                  value={{item.cod_Turno}}>
-                 {{item.nome_Turno}}
-          </option>
-          <ng-template #validacaoCliente>
-            <span *ngIf="turnoFormControl.invalid && turnoFormControl.errors.required">
-              Campo Obrigatório.
-            </span>
-          </ng-template>
-      </select>
-      <br/> 
-
-      <div class="row">
-        <div class="col-md-12">
-            <label>Selecione o Motorista</label>
-      <select name="idMotorista" ngModel class="form-control col-md-12">
-          <option value="">Escolha uma opção</option>
-          <option *ngFor="let item of motoristas"
-                  value={{item.cod_Motorista}}>
-                 {{item.nome}}
-          </option>
-          <ng-template #validacaoCliente>
-            <span *ngIf="motoristaFormControl.invalid && motoristaFormControl.errors.required">
-              Campo Obrigatório.
-            </span>
-          </ng-template>
-      </select>
-      <br/> 
-
-      
-      <div class="row">
-        <div class="col-md-12">
-            <label>Selecione a Rota</label>
-      <select name="idRota" ngModel class="form-control col-md-12">
-          <option value="">Escolha uma opção</option>
-          <option *ngFor="let item of motoristas"
-                  value={{item.cod_Rota}}>
-                 {{item.nome}}
-          </option>
-          <ng-template #validacaoCliente>
-            <span *ngIf="rotaFormControl.invalid && rotaFormControl.errors.required">
-              Campo Obrigatório.
-            </span>
-          </ng-template>
-      </select>
-      <br/> 
-
-            
-      <div class="row">
-        <div class="col-md-12">
-            <label>Selecione o Material</label>
-      <select name="idMaterial" ngModel class="form-control col-md-12">
-          <option value="">Escolha uma opção</option>
-          <option *ngFor="let item of materiais"
-                  value={{item.cod_Material}}>
-                  {{item.descricao}}
-          </option>
-          <ng-template #validacaoCliente>
-            <span *ngIf="materialFormControl.invalid && materialFormControl.errors.required">
-              Campo Obrigatório.
-            </span>
-          </ng-template>
-      </select>
-      <br/> 
-
-      <label>Segunda:</label>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="true"  checked>
-        <label class="form-check-label" for="inlineRadio1">Sim</label>
+    
+    <div class="row mt-2">
+      <div class="col-md-12">
+        <label class="col-form-label-sm" for="motorista">
+          Selecione o Motorista:
+        </label>
+        <ng-select
+          [ngStyle]="{'fontSize': '11px'}"
+          id="motorista"
+          name="motorista"
+          [virtualScroll]="true"
+          [items]="motoristas"
+          bindLabel="nome"
+          bindValue="cod_Motorista"
+          notFoundText="Nenhuma opção disponível"
+          [searchable]="true"
+          [clearable]="false"
+          placeholder="Selecione uma opção"
+          placement="top-left"
+          [formControl]="motoristaFormControl"
+          [ngbTooltip]="validacaoMotorista"
+          [disableTooltip]="desabilitaTooltip(motoristaFormControl)"
+        >
+        </ng-select>
+        <ng-template #validacaoMotorista>
+          <span *ngIf="motoristaFormControl.invalid && motoristaFormControl.errors.required">
+            Campo Obrigatório.
+          </span>
+        </ng-template>
       </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false">
-        <label class="form-check-label" for="inlineRadio2">Não</label>
+    </div>
+
+    
+    <div class="row mt-2">
+      <div class="col-md-12">
+        <label class="col-form-label-sm" for="rota">
+          Selecione a Rota:
+        </label>
+        <ng-select
+          [ngStyle]="{'fontSize': '11px'}"
+          id="rota"
+          name="rota"
+          [virtualScroll]="true"
+          [items]="rotas"
+          bindLabel="nome"
+          bindValue="cod_Rota"
+          notFoundText="Nenhuma opção disponível"
+          [searchable]="true"
+          [clearable]="false"
+          placeholder="Selecione uma opção"
+          placement="top-left"
+          [formControl]="rotaFormControl"
+          [ngbTooltip]="validacaoRota"
+          [disableTooltip]="desabilitaTooltip(rotaFormControl)"
+        >
+        </ng-select>
+        <ng-template #validacaoRota>
+          <span *ngIf="rotaFormControl.invalid && rotaFormControl.errors.required">
+            Campo Obrigatório.
+          </span>
+        </ng-template>
       </div>
-     
+    </div>
 
-
-      <div class="row mt-2">
-        <div class="col-md-12">
-          <label class="col-form-label-sm font-weight-bold" for="comentario">
-            Observação:
-          </label>
-          <textarea
-            rows="5"
-            class="form-control form-control-sm"
-            id="comentario" name="comentario" maxlength="800"
-            [formControl]="observacaoFormControl"
-            placement="top-left"
-            [disableTooltip]="desabilitaTooltip(observacaoFormControl)"
-            [ngbTooltip]="validacaoTexto">
-          </textarea>
-          <ng-template #validacaoTexto>
-            <span *ngIf="observacaoFormControl.invalid && observacaoFormControl.errors.required">
-              Campo obrigatório
-            </span>
-            <span *ngIf="observacaoFormControl.invalid && observacaoFormControl.errors.maxlength">
-               A observação não pode ter mais de 800 caracteres
-            </span>
-            </ng-template>
-            <span style="font-size:11px;" class="float-right">
-              {{ 800 - observacaoFormControl.value?.length  }}/800 caracteres
-               restantes </span>
-        </div>
+    
+    <div class="row mt-2">
+      <div class="col-md-12">
+        <label class="col-form-label-sm" for="material">
+          Selecione o Material:
+        </label>
+        <ng-select
+          [ngStyle]="{'fontSize': '11px'}"
+          id="material"
+          name="material"
+          [virtualScroll]="true"
+          [items]="materiais"
+          bindLabel="descricao"
+          bindValue="cod_Material"
+          notFoundText="Nenhuma opção disponível"
+          [searchable]="true"
+          [clearable]="false"
+          placeholder="Selecione uma opção"
+          placement="top-left"
+          [formControl]="materialFormControl"
+          [ngbTooltip]="validacaoMaterial"
+          [disableTooltip]="desabilitaTooltip(materialFormControl)"
+        >
+        </ng-select>
+        <ng-template #validacaoMaterial>
+          <span *ngIf="materialFormControl.invalid && materialFormControl.errors.required">
+            Campo Obrigatório.
+          </span>
+        </ng-template>
       </div>
-    </div> 
+    </div>
 
-    <div class="modal-footer">
-        <button type="button" class="btn btn-link" data-dismiss="modal" (click)="activeModal.close('cancel')">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="onSubmit()" >Confirmar</button>
+    <br>
+    <br>
+
+    <div class="row">
+      <div class="col-md-5">
+        <label for="segunda" class="col-form-label-sm"
+          >Segunda:</label
+        >
       </div>
-        
+      <div class="col-md-7">
+        <table>
+          <tbody>
+            <tr>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="segunda"
+                    [formControl]="segudaFormControl"
+                    [value]="true"
+                    id="segunda-sim"
+                    class="form-check-input"
+                  />
+                  <label
+                    for="segunda"
+                    class="form-check-label col-form-label-sm"
+                    >Sim</label
+                  >
+                </div>
+              </td>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="segunda"
+                    [formControl]="segudaFormControl"
+                    [value]="false"
+                    id="segunda-nao"
+                    class="form-check-input"
+                    [checked]="true"
+                  />
+                  <label
+                    for="segunda"
+                    class="form-check-label col-form-label-sm"
+                    >Não</label
+                  >
+                </div>
+              </td>            
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
 
-      
-      
-  
+    
+    <div class="row">
+      <div class="col-md-5">
+        <label for="terca" class="col-form-label-sm"
+          >Terca:</label
+        >
+      </div>
+      <div class="col-md-7">
+        <table>
+          <tbody>
+            <tr>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="terca"
+                    [formControl]="tercaFormControl"
+                    [value]="true"
+                    id="terca-sim"
+                    class="form-check-input"
+                  />
+                  <label
+                    for="terca"
+                    class="form-check-label col-form-label-sm"
+                    >Sim</label
+                  >
+                </div>
+              </td>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="terca"
+                    [formControl]="tercaFormControl"
+                    [value]="false"
+                    id="terca-nao"
+                    class="form-check-input"
+                    [checked]="true"
+                  />
+                  <label
+                    for="terca"
+                    class="form-check-label col-form-label-sm"
+                    >Não</label
+                  >
+                </div>
+              </td>            
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-  
- 
+    
+    <div class="row">
+      <div class="col-md-5">
+        <label for="Quarta" class="col-form-label-sm"
+          >Quarta:</label
+        >
+      </div>
+      <div class="col-md-7">
+        <table>
+          <tbody>
+            <tr>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="quarta"
+                    [formControl]="quartaFormControl"
+                    [value]="true"
+                    id="quarta-sim"
+                    class="form-check-input"
+                  />
+                  <label
+                    for="quarta"
+                    class="form-check-label col-form-label-sm"
+                    >Sim</label
+                  >
+                </div>
+              </td>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="quarta"
+                    [formControl]="quartaFormControl"
+                    [value]="false"
+                    id="quarta-nao"
+                    class="form-check-input"
+                    [checked]="true"
+                  />
+                  <label
+                    for="quarta"
+                    class="form-check-label col-form-label-sm"
+                    >Não</label
+                  >
+                </div>
+              </td>            
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-  
-  
-  
+
+    <div class="row">
+      <div class="col-md-5">
+        <label for="quinta" class="col-form-label-sm"
+          >Quinta:</label
+        >
+      </div>
+      <div class="col-md-7">
+        <table>
+          <tbody>
+            <tr>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="quinta"
+                    [formControl]="quintaFormControl"
+                    [value]="true"
+                    id="quinta-sim"
+                    class="form-check-input"
+                  />
+                  <label
+                    for="quinta"
+                    class="form-check-label col-form-label-sm"
+                    >Sim</label
+                  >
+                </div>
+              </td>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="quinta"
+                    [formControl]="quintaFormControl"
+                    [value]="false"
+                    id="quinta-nao"
+                    class="form-check-input"
+                    [checked]="true"
+                  />
+                  <label
+                    for="quinta"
+                    class="form-check-label col-form-label-sm"
+                    >Não</label
+                  >
+                </div>
+              </td>            
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    
+    <div class="row">
+      <div class="col-md-5">
+        <label for="sexta" class="col-form-label-sm"
+          >Sexta:</label
+        >
+      </div>
+      <div class="col-md-7">
+        <table>
+          <tbody>
+            <tr>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="sexta"
+                    [formControl]="sextaFormControl"
+                    [value]="true"
+                    id="sexta-sim"
+                    class="form-check-input"
+                  />
+                  <label
+                    for="sexta"
+                    class="form-check-label col-form-label-sm"
+                    >Sim</label
+                  >
+                </div>
+              </td>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="sexta"
+                    [formControl]="sextaFormControl"
+                    [value]="false"
+                    id="sexta-nao"
+                    class="form-check-input"
+                    [checked]="true"
+                  />
+                  <label
+                    for="sexta"
+                    class="form-check-label col-form-label-sm"
+                    >Não</label
+                  >
+                </div>
+              </td>            
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    
+    <div class="row">
+      <div class="col-md-5">
+        <label for="sabado" class="col-form-label-sm"
+          >Sábado:</label
+        >
+      </div>
+      <div class="col-md-7">
+        <table>
+          <tbody>
+            <tr>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="sabado"
+                    [formControl]="sabadoFormControl"
+                    [value]="true"
+                    id="sabado-sim"
+                    class="form-check-input"
+                  />
+                  <label
+                    for="sabado"
+                    class="form-check-label col-form-label-sm"
+                    >Sim</label
+                  >
+                </div>
+              </td>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="sabado"
+                    [formControl]="sabadoFormControl"
+                    [value]="false"
+                    id="sabado-nao"
+                    class="form-check-input"
+                    [checked]="true"
+                  />
+                  <label
+                    for="sabado"
+                    class="form-check-label col-form-label-sm"
+                    >Não</label
+                  >
+                </div>
+              </td>            
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5">
+        <label for="domingo" class="col-form-label-sm"
+          >Domingo:</label
+        >
+      </div>
+      <div class="col-md-7">
+        <table>
+          <tbody>
+            <tr>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="domingo"
+                    [formControl]="domingoFormControl"
+                    [value]="true"
+                    id="domingo-sim"
+                    class="form-check-input"
+                  />
+                  <label
+                    for="domingo"
+                    class="form-check-label col-form-label-sm"
+                    >Sim</label
+                  >
+                </div>
+              </td>
+              <td style="width: 80px;">
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="domingo"
+                    [formControl]="domingoFormControl"
+                    [value]="false"
+                    id="domingo-nao"
+                    class="form-check-input"
+                    [checked]="true"
+                  />
+                  <label
+                    for="domingo"
+                    class="form-check-label col-form-label-sm"
+                    >Não</label
+                  >
+                </div>
+              </td>            
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <br>
+    <br>
+    
+    <div class="row mt-2">
+      <div class="col-md-12">
+        <label class="col-form-label-sm font-weight-bold" for="comentario">
+          Observação:
+        </label>
+        <textarea
+          rows="5"
+          class="form-control form-control-sm"
+          id="comentario" name="comentario" maxlength="800"
+          [formControl]="observacaoFormControl"
+          placement="top-left"
+          [disableTooltip]="desabilitaTooltip(observacaoFormControl)"
+          [ngbTooltip]="validacaoTexto">
+        </textarea>
+        <ng-template #validacaoTexto>
+          <span *ngIf="observacaoFormControl.invalid && observacaoFormControl.errors.required">
+            Campo obrigatório
+          </span>
+          <span *ngIf="observacaoFormControl.invalid && observacaoFormControl.errors.maxlength">
+             A observação não pode ter mais de 800 caracteres
+          </span>
+          </ng-template>
+          <span style="font-size:11px;" class="float-right">
+            {{ 800 - observacaoFormControl.value?.length  }}/800 caracteres
+             restantes </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-link" data-dismiss="modal" (click)="activeModal.close('cancel')">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()" >Confirmar</button>
+  </div>
+</div>
+
+
+

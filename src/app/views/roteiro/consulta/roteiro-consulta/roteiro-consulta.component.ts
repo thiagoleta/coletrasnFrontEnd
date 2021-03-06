@@ -133,10 +133,10 @@ export class RoteiroConsultaComponent implements OnInit {
           sexta: m.sexta == true ?'Sim' : 'Não',
           sabado: m.sabado == true ?'Sim' : 'Não',
           domingo: m.domingo == true ?'Sim' : 'Não',
-          obeservacao: m.observacao,
+          observacao: m.observacao,
         });
       });
-      return view;
+      return view;      
     }
     return null;
   }

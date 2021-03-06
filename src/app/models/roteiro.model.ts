@@ -27,6 +27,7 @@ export class Roteiro {
         roteiro.cliente = r.cliente;
         roteiro.turno = r.turno;
         roteiro.rota = r.rota;
+        roteiro.material = r.material;
         roteiro.motorista = r.motorista;
         roteiro.segunda = r.segunda;
         roteiro.terca = r.terca;
@@ -35,6 +36,7 @@ export class Roteiro {
         roteiro.sexta = r.sexta;
         roteiro.sabado = r.sabado;
         roteiro.domingo = r.domingo;
+        roteiro.observacao = r.observacao;
         return roteiro;
     }
 
