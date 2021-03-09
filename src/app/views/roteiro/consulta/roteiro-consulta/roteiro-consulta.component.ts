@@ -124,8 +124,7 @@ export class RoteiroConsultaComponent implements OnInit {
           cliente: m.cliente.nomeCompleto_RazaoSocial,
           turno: m.turno.nome_Turno,
           motorista: m.motorista.nome,
-          endereco: m.cliente.endereco,
-          
+          endereco: m.cliente.endereco,          
           segunda: m.segunda == true ?'Sim' : 'Não',
           terca: m.terca == true ?'Sim' : 'Não',
           quarta: m.quarta == true ?'Sim' : 'Não',

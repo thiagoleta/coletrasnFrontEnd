@@ -16,6 +16,8 @@ import {MesreferenciaConsultaComponent} from './views/mesreferencia/consulta/mes
 import {MesreferenciaManterComponent} from './views/mesreferencia/manter/mesreferencia-manter/mesreferencia-manter.component'
 import {RoteiroConsultaComponent} from './views/roteiro/consulta/roteiro-consulta/roteiro-consulta.component'
 import {RoteiroManterComponent} from  './views/roteiro/manter/roteiro-manter/roteiro-manter.component'
+import {ContratoConsultaComponent} from './views/contrato/consulta/contrato-consulta/contrato-consulta.component'
+import {ContratoManterComponent} from './views/contrato/manter/contrato-manter/contrato-manter.component'
 
 
 
@@ -76,6 +78,14 @@ const routes: Routes = [{
 {
   path: 'roteiro-manter',
   component: RoteiroManterComponent
+},
+{
+  path: 'contrato-consulta',
+  component: ContratoConsultaComponent
+},
+{
+  path: 'contrato-manter',
+  component: ContratoManterComponent
 },
 ];
 

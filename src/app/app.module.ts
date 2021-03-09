@@ -44,6 +44,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RoteiroConsultaComponent } from './views/roteiro/consulta/roteiro-consulta/roteiro-consulta.component';
 import { RoteiroManterComponent } from './views/roteiro/manter/roteiro-manter/roteiro-manter.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ContratoConsultaComponent } from './views/contrato/consulta/contrato-consulta/contrato-consulta.component';
+import { ContratoManterComponent } from './views/contrato/manter/contrato-manter/contrato-manter.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MesreferenciaConsultaComponent,
     MesreferenciaManterComponent,
     RoteiroConsultaComponent,
-    RoteiroManterComponent   
+    RoteiroManterComponent,
+    ContratoConsultaComponent,
+    ContratoManterComponent   
   ],
   imports: [
     BrowserModule,
