@@ -9,8 +9,10 @@
   [(pagina)]="pagina"
   [(ordenacaoColuna)]="ordenacaoColuna"
   [(ordenacaoDirecao)]="ordenacaoDirecao"
-  [(totalDeRegistrosPorPagina)]="totalDeRegistrosPorPagina"  
-  (aoRemoverRegistro)="remover($event.cod_Roteiro)"
+  [(totalDeRegistrosPorPagina)]="totalDeRegistrosPorPagina" 
+  (aoClicarNovoRegistro)="abrirDialogoDeCriar()"
+  (aoClicarEditarRegistro)="abrirDialogoDeAtualizar($event.cod_Contrato)" 
+  (aoRemoverRegistro)="remover($event.cod_Contrato)"
   (aoCarregarRegistros)="obter()"
   (aoClicarExportar)="exportar()">
 </app-manutencao>
