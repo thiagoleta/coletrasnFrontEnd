@@ -13,7 +13,7 @@ import { PagamentoManterComponent } from '../../manter/pagamento-manter/pagament
 })
 export class PagamentoConsultaComponent implements OnInit {
   titulo: string = 'Roteiro';
-  breadcrump: string = 'Cadastro > Pagamento';
+  breadcrump: string = 'Cadastros > Pagamento';
   tituloLista: string = 'Roteiro';
   tituloAdicionar: string = 'Adicionar Pagamento';
   pagina: number = 1;

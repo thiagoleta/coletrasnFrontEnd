@@ -14,7 +14,7 @@ import { RotaManterComponent } from '../../manter/rota-manter/rota-manter.compon
 export class RotaConsultaComponent implements OnInit {
 
   titulo: string = 'Rota';
-  breadcrump: string = 'Manutenção > Cadastros Comuns > Rota';
+  breadcrump: string = 'Cadastros > Rota';
   tituloLista: string = 'Rota';
   tituloAdicionar: string = 'Adicionar Rota';
   pagina: number = 1;

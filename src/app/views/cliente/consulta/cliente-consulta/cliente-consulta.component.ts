@@ -15,7 +15,7 @@ import { ClienteManterComponent } from '../../manter/cliente-manter/cliente-mant
 export class ClienteConsultaComponent implements OnInit {
 
   titulo: string = 'Cliente';
-  breadcrump: string = 'Manutenção > Cadastros Comuns > Cliente';
+  breadcrump: string = 'Cadastros > Cliente';
   tituloLista: string = 'Cliente';
   tituloAdicionar: string = 'Adicionar Cliente';
   pagina: number = 1;

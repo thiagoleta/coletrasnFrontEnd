@@ -16,7 +16,7 @@ export class RoteiroConsultaComponent implements OnInit {
 
 
   titulo: string = 'Roteiro';
-  breadcrump: string = 'Manutenção > Cadastros Comuns > Roteiro';
+  breadcrump: string = 'Cadastros > Roteiro';
   tituloLista: string = 'Roteiro';
   tituloAdicionar: string = 'Adicionar Roteiro';
   pagina: number = 1;

@@ -16,7 +16,7 @@ export class MotoristaConsultaComponent implements OnInit {
 
 
   titulo: string = 'Motorista';
-  breadcrump: string = 'Manutenção > Cadastros Comuns > Motorista';
+  breadcrump: string = 'Cadastros > Motorista';
   tituloLista: string = 'Motorista';
   tituloAdicionar: string = 'Adicionar Motorista';
   pagina: number = 1;
