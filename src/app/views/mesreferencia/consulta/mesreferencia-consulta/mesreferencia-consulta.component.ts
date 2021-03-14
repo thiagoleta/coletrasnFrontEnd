@@ -17,7 +17,7 @@ export class MesreferenciaConsultaComponent implements OnInit {
 
 
   titulo: string = 'Mês Referência';
-  breadcrump: string = 'Cadastros Comuns > Mês Referência';
+  breadcrump: string = 'Cadastros > Mês Referência';
   tituloLista: string = 'Mês Referência';
   tituloAdicionar: string = 'Mês Referência';
   pagina: number = 1;

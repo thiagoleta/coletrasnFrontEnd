@@ -15,7 +15,7 @@ export class ConsultaComponent implements OnInit {
 
   access_token = '';
   titulo: string = 'Material';
-  breadcrump: string = 'Manutenção > Cadastros Comuns > Material';
+  breadcrump: string = 'Cadastros > Material';
   tituloLista: string = 'Material';
   tituloAdicionar: string = 'Adicionar Material';
   pagina: number = 1;
