@@ -12,8 +12,7 @@ import { RoteiroManterComponent } from '../../manter/roteiro-manter/roteiro-mant
   templateUrl: './roteiro-consulta.component.html',
   styleUrls: ['./roteiro-consulta.component.css']
 })
-export class RoteiroConsultaComponent implements OnInit {
-  
+export class RoteiroConsultaComponent implements OnInit { 
 
 
   titulo: string = 'Roteiro';

@@ -46,6 +46,8 @@ import { RoteiroManterComponent } from './views/roteiro/manter/roteiro-manter/ro
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ContratoConsultaComponent } from './views/contrato/consulta/contrato-consulta/contrato-consulta.component';
 import { ContratoManterComponent } from './views/contrato/manter/contrato-manter/contrato-manter.component';
+import { PagamentoManterComponent } from './views/pagamento/manter/pagamento-manter/pagamento-manter.component';
+import { PagamentoConsultaComponent } from './views/pagamento/consulta/pagamento-consulta/pagamento-consulta.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { ContratoManterComponent } from './views/contrato/manter/contrato-manter
     RoteiroConsultaComponent,
     RoteiroManterComponent,
     ContratoConsultaComponent,
-    ContratoManterComponent   
+    ContratoManterComponent,
+    PagamentoManterComponent,
+    PagamentoConsultaComponent   
   ],
   imports: [
     BrowserModule,

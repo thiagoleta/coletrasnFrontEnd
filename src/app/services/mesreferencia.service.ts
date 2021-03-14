@@ -144,4 +144,14 @@ createHttpHeaders() {
   }
 }
 
+async obter(): Promise<Array<MesReferencia>> {
+  try {
+    return await this.httpClient
+      .get<Array<MesReferencia>>(this.url(`mesativos`))
+      .toPromise();
+  } catch (error) {
+    throw HttpErrorResult.fromError(error);
+  }
+}
+
 }
