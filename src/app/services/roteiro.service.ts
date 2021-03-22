@@ -93,7 +93,7 @@ async criarRoteiro(model: {
 async atualizarRoteiro(model: {
   cod_Roteiro: number;
   cod_Cliente: number;
-  cod_Turno: number
+  cod_Turno: number,
   cod_Rota: number,
   cod_Motorista: number,
   cod_Material: number,

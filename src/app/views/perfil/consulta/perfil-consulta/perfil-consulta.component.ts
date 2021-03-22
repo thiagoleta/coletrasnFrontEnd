@@ -1,41 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { ColunaGenerica } from 'src/app/models/coluna-generica.model';
-import { Contrato } from 'src/app/models/contrato.model';
-import { ContratoService } from 'src/app/services/contrato.service';
+import { Perfil } from 'src/app/models/perfil.model';
 import { DialogService } from 'src/app/services/dialog.service';
+import { PerfilService } from 'src/app/services/perfil.service';
 import { HttpErrorResult } from 'src/app/views/http/http-error-result';
-import { ContratoManterComponent } from '../../manter/contrato-manter/contrato-manter.component';
+import { PerfilManterComponent } from '../../manter/perfil-manter/perfil-manter.component';
 
 @Component({
-  selector: 'app-contrato-consulta',
-  templateUrl: './contrato-consulta.component.html',
-  styleUrls: ['./contrato-consulta.component.css']
+  selector: 'app-perfil-consulta',
+  templateUrl: './perfil-consulta.component.html',
+  styleUrls: ['./perfil-consulta.component.css']
 })
-export class ContratoConsultaComponent implements OnInit {
+export class PerfilConsultaComponent implements OnInit {
 
-  titulo: string = 'Contrato';
-  breadcrump: string = 'Cadastros > Contrato';
-  tituloLista: string = 'Contrato';
-  tituloAdicionar: string = 'Adicionar Contrato';
+  titulo: string = 'Perfil';
+  breadcrump: string = 'Cadastros > Perfil';
+  tituloLista: string = 'Roteiro';
+  tituloAdicionar: string = 'Adicionar Perfil';
   pagina: number = 1;
   ordenacaoColuna: string = '';
   ordenacaoDirecao: 'asc' | 'desc' = 'asc';
   totalDeRegistrosPorPagina: number = 8;
-  registros: Array<Contrato>;
+  registros: Array<Perfil>;
   totalDeRegistros: number;
-  modal: any = ContratoManterComponent;
+  modal: any = PerfilManterComponent;
   colunas: Array<ColunaGenerica> = [
-    new ColunaGenerica('ID', 'cod_Contrato', true, '2%', 'cod_Contrato'),
-    new ColunaGenerica('Cliente', 'cliente', true, '30%', 'cliente'),
-    new ColunaGenerica('Coleta Contratada', 'coletaContratada', true, '20%', 'coletaContratada'),
-    new ColunaGenerica('Valor Limite', 'valorLimite', true, '10%', 'valorLimite'),
-    new ColunaGenerica('Valor Unidade', 'valorUnidade', true, '20%', 'valorUnidade'),    
-    new ColunaGenerica('Termino Contrato', 'flagTermino', true, '20%', 'flagTermino'),    
+    new ColunaGenerica('ID', 'cod_Perfil', true, '2%', 'cod_Perfil'),
+    new ColunaGenerica('Nome Perfil', 'nome_Perfil', true, '30%', 'nome_Perfil'),
+    
   ];
   
 
   constructor(
-    private service: ContratoService,
+    private service: PerfilService,
     private dialog: DialogService    
   ) {}
 
@@ -71,7 +68,7 @@ export class ContratoConsultaComponent implements OnInit {
 
   async abrirDialogoDeCriar(): Promise<void> {
     try {
-      const resultado = await ContratoManterComponent.exibeModalDeCriar();
+      const resultado = await PerfilManterComponent.exibeModalDeCriar();
       console.log(resultado);
     } catch (error) {
       console.error(error);
@@ -79,21 +76,21 @@ export class ContratoConsultaComponent implements OnInit {
     await this.obter();
   }
 
-  async abrirDialogoDeAtualizar(cod_Contrato: number): Promise<void> {
-    const entidade: Contrato = this.registros.find(x => x.cod_Contrato === cod_Contrato);
+  async abrirDialogoDeAtualizar(cod_Perfil: number): Promise<void> {
+    const entidade: Perfil = this.registros.find(x => x.cod_Perfil === cod_Perfil);
     try {
-      await ContratoManterComponent.exibeModalDeAlterar(entidade);
+      await PerfilManterComponent.exibeModalDeAlterar(entidade);
     } catch (error) {
       console.error(error);
     }
     await this.obter();
   }
 
-  async remover(cod_Contrato: number): Promise<void> {
-    const confirm = await this.dialog.showConfirm('Excluir Contrato', 'Deseja excluir o Contrato?');
+  async remover(cod_Perfil: number): Promise<void> {
+    const confirm = await this.dialog.showConfirm('Excluir Perfil', 'Deseja excluir o Perfil?');
     if (confirm) {
       try {
-        await this.service.remover(cod_Contrato);
+        await this.service.remover(cod_Perfil);
         this.dialog.showAlert('Exclusão realizada com sucesso', 'O registro foi excluído do sistema.');
       } catch (error) {
         this.dialog.showErr('Exclusão não realizada', (error as HttpErrorResult).messages.join('\n'));
@@ -102,20 +99,15 @@ export class ContratoConsultaComponent implements OnInit {
     }
   }
 
+
   get obterResultados(): Array<object> {    
     const view = [];
     if (this.registros) {
-      this.registros.forEach((m: Contrato) => {
+      this.registros.forEach((m: Perfil) => {
         view.push({
-          cod_Contrato: m.cod_Contrato,          
-          cliente: m.cliente.nomeCompleto_RazaoSocial,
-          coletaContratada: m.coletaContratada,
-          valorLimite: m.valorLimite,
-          valorUnidade: m.valorLimite,
-          motivoCancelamento: m.motivoCancelamento,
-          dataCancelamento: m.dataCancelamento,
-          flagTermino: m.flagTermino === 'S' ?'Sim' : 'Não',
-          dataTermino: m.dataTermino,          
+          cod_Perfil: m.cod_Perfil,
+          nome_Perfil: m.nome_Perfil,     
+                    
         });
       });
       return view;      

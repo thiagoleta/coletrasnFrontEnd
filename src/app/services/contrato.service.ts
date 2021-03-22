@@ -93,7 +93,7 @@ export class ContratoService {
     dataInicio: Date,
     motivoCancelamento: string,
     dataCancelamento?: Date,
-    flagTermino: boolean,
+    flagTermino: string,
     dataTermino: Date, 
   }): Promise<void> {
     try {

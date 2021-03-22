@@ -10,7 +10,7 @@ export class Contrato {
     dataInicio: Date;
     motivoCancelamento: string;   
     dataCancelamento?: Date;   
-    flagTermino: boolean;
+    flagTermino: string;
     dataTermino: Date;
 
 	

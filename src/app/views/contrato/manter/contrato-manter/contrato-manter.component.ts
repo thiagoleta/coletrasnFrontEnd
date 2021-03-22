@@ -126,7 +126,7 @@ export class ContratoManterComponent implements OnInit {
         dataInicio: this.dataInicioContratoFormControl.value,        
         motivoCancelamento: this.motivoCancelamentoFormControl.value ? this.motivoCancelamentoFormControl.value : null,        
         dataCancelamento: this.dataCancelamentoFormControl.value ? this.dataCancelamentoFormControl.value : null,        
-        flagTermino: this.flagTerminoFormControl.value,
+        flagTermino: this.flagTerminoFormControl.value ? this.flagTerminoFormControl.value : null,        
         dataTermino: this.dataTerminoFormControl.value ? this.dataTerminoFormControl.value : null,                
       });
       this.dialog.showAlert('Cadastro realizado com sucesso', 'O Contrato foi registrado no sistema.')
@@ -148,11 +148,11 @@ export class ContratoManterComponent implements OnInit {
         dataInicio: this.dataInicioContratoFormControl.value ? this.dataInicioContratoFormControl.value : null,
         motivoCancelamento: this.motivoCancelamentoFormControl.value ? this.motivoCancelamentoFormControl.value : null,
         dataCancelamento: this.dataCancelamentoFormControl.value ? this.dataCancelamentoFormControl.value : null,
-        flagTermino: this.flagTerminoFormControl.value,
+        flagTermino: this.flagTerminoFormControl.value ? this.flagTerminoFormControl.value : null,      
         dataTermino: this.dataCancelamentoFormControl.value ? this.dataCancelamentoFormControl.value : null,
         
       });
-      this.dialog.showAlert('Alteração realizada com sucesso', 'O Roteiro foi alterado no sistema.')
+      this.dialog.showAlert('Alteração realizada com sucesso', 'O Contrato foi alterado no sistema.')
       .then(() => this.activeModal.close(this.entidade));
     } catch (error) {
       this.dialog.showErr('Alteração não realizada', (error as HttpErrorResult).messages.join('\n'));

@@ -20,6 +20,10 @@ import {ContratoConsultaComponent} from './views/contrato/consulta/contrato-cons
 import {ContratoManterComponent} from './views/contrato/manter/contrato-manter/contrato-manter.component'
 import {PagamentoManterComponent} from './views/pagamento/manter/pagamento-manter/pagamento-manter.component'
 import {PagamentoConsultaComponent} from './views/pagamento/consulta/pagamento-consulta/pagamento-consulta.component'
+import {PerfilConsultaComponent} from './views/perfil/consulta/perfil-consulta/perfil-consulta.component'
+import {PerfilManterComponent} from './views/perfil/manter/perfil-manter/perfil-manter.component'
+import {UsuarioConsultaComponent} from './views/usuario/consulta/usuario-consulta/usuario-consulta.component'
+import {UsuarioManterComponent} from './views/usuario/manter/usuario-manter/usuario-manter.component'
 
 
 
@@ -96,6 +100,22 @@ const routes: Routes = [{
 {
   path: 'pagamento-manter',
   component: PagamentoManterComponent
+},
+{
+  path: 'perfil-consulta',
+  component: PerfilConsultaComponent
+},
+{
+  path: 'Perfil-manter',
+  component: PerfilManterComponent
+},
+{
+  path: 'usuario-consulta',
+  component: UsuarioConsultaComponent
+},
+{
+  path: 'usuario-manter',
+  component: UsuarioManterComponent
 },
 
 ];

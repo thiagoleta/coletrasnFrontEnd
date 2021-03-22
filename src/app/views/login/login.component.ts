@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.mensagemAcesso = 'Processando, por favor aguarde...';
 
     // acessando a API..
-    this.httpClient.post(this.endpointProd, formAcesso.value)
+    this.httpClient.post(this.endpointLocalHost, formAcesso.value)
       .subscribe(
         (data: any) => {
           this.mensagemAcesso = data.mensagem;
