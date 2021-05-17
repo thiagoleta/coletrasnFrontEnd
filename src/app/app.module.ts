@@ -52,6 +52,8 @@ import { UsuarioConsultaComponent } from './views/usuario/consulta/usuario-consu
 import { PerfilConsultaComponent } from './views/perfil/consulta/perfil-consulta/perfil-consulta.component';
 import { UsuarioManterComponent } from './views/usuario/manter/usuario-manter/usuario-manter.component';
 import { PerfilManterComponent } from './views/perfil/manter/perfil-manter/perfil-manter.component';
+import { OsConsultaComponent } from './views/os/consulta/os-consulta/os-consulta.component';
+import { OsManterComponent } from './views/os/manter/os-manter/os-manter.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +86,9 @@ import { PerfilManterComponent } from './views/perfil/manter/perfil-manter/perfi
     UsuarioConsultaComponent,
     PerfilConsultaComponent,
     UsuarioManterComponent,
-    PerfilManterComponent   
+    PerfilManterComponent,
+    OsConsultaComponent,
+    OsManterComponent   
   ],
   imports: [
     BrowserModule,

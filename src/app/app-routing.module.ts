@@ -24,6 +24,8 @@ import {PerfilConsultaComponent} from './views/perfil/consulta/perfil-consulta/p
 import {PerfilManterComponent} from './views/perfil/manter/perfil-manter/perfil-manter.component'
 import {UsuarioConsultaComponent} from './views/usuario/consulta/usuario-consulta/usuario-consulta.component'
 import {UsuarioManterComponent} from './views/usuario/manter/usuario-manter/usuario-manter.component'
+import {OsConsultaComponent} from './views/os/consulta/os-consulta/os-consulta.component'
+import {OsManterComponent} from './views/os/manter/os-manter/os-manter.component'
 
 
 
@@ -117,7 +119,14 @@ const routes: Routes = [{
   path: 'usuario-manter',
   component: UsuarioManterComponent
 },
-
+{
+  path: 'os-manter',
+  component: OsManterComponent
+},
+{
+  path: 'os-consulta',
+  component: OsConsultaComponent
+}
 ];
 
 @NgModule({
