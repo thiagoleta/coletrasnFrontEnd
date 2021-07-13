@@ -25,11 +25,11 @@ export class RotaConsultaComponent implements OnInit {
   totalDeRegistros: number;
   modal: any = RotaManterComponent;
   colunas: Array<ColunaGenerica> = [
-    new ColunaGenerica('ID', 'cod_Rota', true, '7%', 'cod_Rota'),
-    new ColunaGenerica('Nome', 'nome', true, '30%', 'nome'),
-    new ColunaGenerica('Composição da Rota', 'composicao_Rota', true, '27%', 'composicao_Rota'),
+    new ColunaGenerica('ID', 'cod_Rota', true, '5%', 'cod_Rota'),
+    new ColunaGenerica('Nome', 'nome', true, '35%', 'nome'),
+    new ColunaGenerica('Composição da Rota', 'composicao_Rota', true, '35%', 'composicao_Rota'),
     new ColunaGenerica('Ativo', 'flag_Ativo', true, '7%', 'flag_Ativo'),
-    new ColunaGenerica('Observação da Rota', 'observacao', true, '7%', 'observacao'),
+    new ColunaGenerica('Observações', 'observacao', true, '35%', 'observacao'),
   ];
 
 

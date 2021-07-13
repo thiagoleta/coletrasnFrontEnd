@@ -14,9 +14,6 @@ export class RoteiroService {
 // tslint:disable-next-line: no-inferrable-types
 protected endPoint: string = 'Roteiro';
 
-protected httpHeaders: HttpHeaders;
-cookieService: any;
-
 constructor(private httpClient: HttpClient,
     private exportarService: TransferenciaArquivos
 ) { }

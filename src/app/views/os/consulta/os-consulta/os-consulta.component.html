@@ -1,1 +1,204 @@
-<p>os-consulta works!</p>
+
+<div class="row pt-3">
+  <div class="col-md-11">
+    <span>
+      <strong class="titulo-purple">Ordem de Serviço</strong>
+      <hr class="divisor-titulo mt-1">
+    </span>
+  </div>
+  <div class="col-md-1">
+    <div class="btn-adicionar">
+      <a (click)="abrirDialogoDeCriar()">
+        <i class="fas fa-plus-circle btn-add-icon"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-1" >
+  <div class="btn-adicionar" >
+    <a (click)="exportar()">
+      <i class="fas fa-download">Exportar</i>
+    </a>
+  </div>
+</div>
+
+<br>
+<br>
+<div class="row">
+  <div class="col-md-4">
+      <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="filtro" placeholder="Pesquisar Ordem de Serviço" />
+      </div>
+  </div>
+</div>
+ 
+
+<div class="row">
+  <div class="col-md-12 pt-2">
+    <table id="tabela-os" class="table-bordered table-sm mb-0 ">
+      <thead>
+        <tr>
+          <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 5%;cursor:pointer;"
+            sortable="cod_OS" (sort)="onSort($event.column)">
+            Id&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('cod_OS','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('cod_OS','desc')"></i>
+          </th>
+          <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 13%;cursor:pointer;"
+            sortable="data_Geracao" (sort)="onSort($event.column)">
+            Data Geração&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('data_Geracao','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('data_Geracao','desc')"></i>
+          </th>
+          <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 5%;cursor:pointer;"
+            sortable="mesAno" (sort)="onSort($event.column)">
+            Mês/Ano&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('mesAno','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('mesAno','desc')"></i>
+          </th>
+          <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 12%;cursor:pointer;"
+            sortable="nomeCompleto_RazaoSocial" (sort)="onSort($event.column)">
+            Nome Cliente&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('cliente.nomeCompleto_RazaoSocial','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('cliente.nomeCompleto_RazaoSocial','desc')"></i>
+          </th>
+          <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 12%;cursor:pointer;"
+            sortable="nomeMotorista" (sort)="onSort($event.column)">
+            Motorista&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('nomeMotorista','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('nomeMotorista','desc')"></i>
+          </th>
+          <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 12%;cursor:pointer;"
+            sortable="quantidade_Coletada" (sort)="onSort($event.column)">
+            Quantidade Coleta&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('quantidade_Coletada','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('quantidade_Coletada','desc')"></i>
+          </th>
+          <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 13%;cursor:pointer;"
+            sortable="data_Coleta" (sort)="onSort($event.column)">
+            Data Coleta&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('data_Coleta','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('data_Coleta','desc')"></i>
+          </th>
+          <!-- <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 5%;cursor:pointer;"
+            sortable="flag_Coleta" (sort)="onSort($event.column)">
+            Coletado&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('flag_Coleta','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('flag_Coleta','desc')"></i>
+          </th> -->
+          <!-- <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 5%;cursor:pointer;"
+            sortable="hora_Entrada" (sort)="onSort($event.column)">
+            Entrada&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('hora_Entrada','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('hora_Entrada','desc')"></i>
+          </th> -->
+          <!-- <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 5%;cursor:pointer;"
+            sortable="hora_Saida" (sort)="onSort($event.column)">
+            Saída&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('hora_Saida','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('hora_Saida','desc')"></i>
+          </th> -->
+          <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 8%;cursor:pointer;"
+            sortable="placa" (sort)="onSort($event.column)">
+            Placa&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('placa','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('placa','desc')"></i>
+          </th>
+          <!-- <th scope="col" class="font-weight-bold" class="pl-1 text-center" style="width: 5%;cursor:pointer;"
+            sortable="flag_Cancelado" (sort)="onSort($event.column)">
+            Cancelado&nbsp;
+            <i class="fas fa-sort" *ngIf="exibirDirecao('','')"></i>
+            <i class="fas fa-sort-up" *ngIf="exibirDirecao('flag_Cancelado','asc')"></i>
+            <i class="fas fa-sort-down" *ngIf="exibirDirecao('flag_Cancelado','desc')"></i>
+          </th> -->
+
+          <th scope="col" class="small font-weight-bold" style="width: 8%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let os of registros | filter: filtro " >
+          <td class="pl-1 text-center">
+            {{ os.cod_OS}}
+          </td>
+          <td class="pl-1 text-center">
+            {{ os.data_Geracao | date: 'dd/MM/yyyy hh:mm:ss' }}
+          </td>
+          <td class="pl-1 text-center">
+            {{ os.mesReferencia.mesAno }}
+          </td>
+          <td class="pl-1 text-center">
+            {{ os.cliente.nomeCompleto_RazaoSocial}}
+          </td>
+          <td class="pl-1 text-center">
+            {{ os.motorista.nome  }}
+          </td>
+          <td class="pl-1 text-center">
+            {{ os.quantidade_Coletada}}
+          </td>
+          <td class="pl-1 text-center">
+            {{ os.data_Coleta | date: 'dd/MM/yyyy hh:mm:ss' }}
+          </td>
+          <!-- <td class="pl-1 text-center">
+            {{ os.flag_Coleta }}
+          </td>
+          <td class="pl-1 text-center">
+            {{ os.hora_Entrada }}
+          </td>
+          <td class="pl-1 text-center">
+            {{ os.hora_Saida }}
+          </td> -->
+          <td class="pl-1 text-center">
+            {{ os.motorista.placa }}
+          </td>
+          <!-- <td class="pl-1 text-center">
+            {{ os.flag_Cancelado }}
+          </td> -->
+          <td class="text-center">
+            <a href="javascript:;" (click)="abrirDialogoDeAtualizar(os.cod_OS )" class="p-1">
+              <i class="fas fa-edit"></i>
+            </a>
+            <a href="javascript:;" (click)="remover(os.cod_OS)" class="p-1">
+              <i class="fas fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row pt-3">
+  <div class="col-md-6 mb-2">
+    <span class="font-small"><b>Total de Registros:</b> {{ totalDeRegistros }}</span>
+    <span> - </span>
+    <span class="font-small">
+      <b>Itens por página:</b>&nbsp;
+    </span>
+    <select class="font-small" id="itensPorPagina" [(ngModel)]="tamanhoPagina" (change)="alterarQuantidadePorPagina()">
+      <option class="font-small" *ngFor="let l of listaQuantidadeRegistros" [ngValue]="l">{{ l }}</option>
+    </select>
+  </div>
+  <div class="col-md-6">
+    <ngb-pagination class="float-right" *ngIf="exibirPaginacao()" [(page)]="pagina" [pageSize]="tamanhoPagina"
+      [collectionSize]="totalDeRegistros" [maxSize]="tamanhoMaximo" (pageChange)="obter()">
+      <ng-template ngbPaginationFirst>Primeiro</ng-template>
+      <ng-template ngbPaginationLast>Último</ng-template>
+      <ng-template ngbPaginationPrevious>Anterior</ng-template>
+      <ng-template ngbPaginationNext>Próximo</ng-template>
+      <ng-template ngbPaginationEllipsis>...</ng-template>
+      <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+    </ngb-pagination>
+  </div>
+</div>
+

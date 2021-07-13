@@ -14,7 +14,7 @@ import { ContratoManterComponent } from '../../manter/contrato-manter/contrato-m
 export class ContratoConsultaComponent implements OnInit {
 
   titulo: string = 'Contrato';
-  breadcrump: string = 'Cadastros > Contrato';
+  breadcrump: string = 'Cadastro > Contrato';
   tituloLista: string = 'Contrato';
   tituloAdicionar: string = 'Adicionar Contrato';
   pagina: number = 1;
@@ -26,11 +26,11 @@ export class ContratoConsultaComponent implements OnInit {
   modal: any = ContratoManterComponent;
   colunas: Array<ColunaGenerica> = [
     new ColunaGenerica('ID', 'cod_Contrato', true, '2%', 'cod_Contrato'),
-    new ColunaGenerica('Cliente', 'cliente', true, '30%', 'cliente'),
+    new ColunaGenerica('Cliente', 'cliente', true, '20%', 'cliente'),
     new ColunaGenerica('Coleta Contratada', 'coletaContratada', true, '20%', 'coletaContratada'),
-    new ColunaGenerica('Valor Limite', 'valorLimite', true, '10%', 'valorLimite'),
+    new ColunaGenerica('Valor Limite', 'valorLimite', true, '20%', 'valorLimite'),
     new ColunaGenerica('Valor Unidade', 'valorUnidade', true, '20%', 'valorUnidade'),    
-    new ColunaGenerica('Termino Contrato', 'flagTermino', true, '20%', 'flagTermino'),    
+    new ColunaGenerica('Termino Contrato', 'flagTermino', true, '30%', 'flagTermino'),    
   ];
   
 

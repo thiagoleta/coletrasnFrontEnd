@@ -16,7 +16,7 @@ export class MotoristaConsultaComponent implements OnInit {
 
 
   titulo: string = 'Motorista';
-  breadcrump: string = 'Cadastros > Motorista';
+  breadcrump: string = 'Cadastro > Motorista';
   tituloLista: string = 'Motorista';
   tituloAdicionar: string = 'Adicionar Motorista';
   pagina: number = 1;
@@ -27,12 +27,12 @@ export class MotoristaConsultaComponent implements OnInit {
   totalDeRegistros: number;
   modal: any = MotoristaManterComponent;
   colunas: Array<ColunaGenerica> = [
-    new ColunaGenerica('ID', 'cod_Motorista', true, '7%', 'cod_Motorista'),
-    new ColunaGenerica('Nome', 'nome', true, '30%', 'nome'),
-    new ColunaGenerica('Telefone Motorista', 'telefone1', true, '27%', 'telefone1'),
-    new ColunaGenerica('Telefones Adicionais', 'telefone2', true, '50%', 'telefone2'),
-    new ColunaGenerica('Ajutante', 'ajudante1', true, '7%', 'ajudante1'),
-    new ColunaGenerica('Ajutantes Adicionais', 'ajudante2', true, '7%', 'ajudante2'),
+    new ColunaGenerica('ID', 'cod_Motorista', true, '5%', 'cod_Motorista'),
+    new ColunaGenerica('Nome', 'nome', true, '10%', 'nome'),
+    new ColunaGenerica('Telefone', 'telefone1', true, '10%', 'telefone1'),
+    new ColunaGenerica('Telefones', 'telefone2', true, '20%', 'telefone2'),
+    new ColunaGenerica('Ajudante', 'ajudante1', true, '30%', 'ajudante1'),
+    new ColunaGenerica('Ajutantes', 'ajudante2', true, '20%', 'ajudante2'),
     new ColunaGenerica('Placa', 'placa', true, '7%', 'placa'),
   ];
 

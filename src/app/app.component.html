@@ -1,3 +1,97 @@
-<app-header></app-header>
-<app-footer></app-footer>
-<app-nav></app-nav>
+<div *ngIf="isLoggedIn">
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#"><img class="logo" src="assets/logo2.png" alt="logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/login">Login <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+  
+      <ul class="navbar-nav ml-auto">
+
+
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Usuário autenticado</span>
+          </a>
+          <!-- Dropdown - User Information -->
+          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">
+              <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+              Minha Conta
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" (click)="sairDoSistema()">
+               <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+              Sair do Sistema
+            </a>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </nav>
+  <app-footer></app-footer>
+  <app-nav></app-nav>
+</div>
+
+<div *ngIf="!isLoggedIn">
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-5 col-lg-5 col-md-5">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4"><i class="fa fa-user-circle"></i> Acesso ao Sistema</h1>
+                  </div>
+                  <form #formLogin="ngForm" (submit)="autenticarUsuario(formLogin)" class="user">
+                    <div class="form-group">
+                      <input type="email" name="email" ngModel class="form-control form-control-user" />
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="senha" ngModel class="form-control form-control-user" />
+                    </div>
+                    <input type="submit" value="Entrar" class="btn btn-primary btn-user btn-block" />
+                  </form>
+
+                  <div class="mt-4 text-center text-danger">
+                    <strong>{{mensagem}}</strong>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+

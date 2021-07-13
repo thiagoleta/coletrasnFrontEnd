@@ -28,6 +28,7 @@ export class MesreferenciaConsultaComponent implements OnInit {
   totalDeRegistros: number;
   modal: any = MesreferenciaManterComponent;
   colunas: Array<ColunaGenerica> = [
+    new ColunaGenerica('ID', 'cod_MesReferencia', true, '7%', 'cod_MesReferencia'),
     new ColunaGenerica('Mês/Ano', 'mesAno', true, '7%', 'mesAno'),
     new ColunaGenerica('Data Inicio Referência', 'dataInicio', true, '30%', 'dataInicio'),    
     new ColunaGenerica('Data Final Referência', 'dataTermino',  true, '27%', 'dataTermino'),
@@ -105,13 +106,15 @@ export class MesreferenciaConsultaComponent implements OnInit {
   }
 
   get obterResultados(): Array<object> {
-    const view = [];    
+    const option = {year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric',second: 'numeric',era: ('long' || 'short'),timeZoneName: ('long' || 'short')}
+    const locales = 'pt-br';
+    const view = [];
     if (this.registros) {
       this.registros.forEach((m: MesReferencia) => {
         view.push({
           cod_MesReferencia: m.cod_MesReferencia,
           mesAno: m.mesAno,
-          dataInicio: m.dataInicio,
+          dataInicio: m.dataInicio.toLocaleString(locales),
           dataTermino: m.dataTermino,
           ativo: m.ativo === true ? 'Sim' : 'Não',          
         });
@@ -125,6 +128,6 @@ export class MesreferenciaConsultaComponent implements OnInit {
     this.obter();
   }
 
-  
+ 
 
 }

@@ -15,15 +15,12 @@ import { AlertsModule } from 'angular-alert-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // tslint:disable-next-line: comment-format
 //biblioteca para executar as chamadas HTTP (POST, PUT, GET, DELETE) para uma API
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
+import { HttpClientModule } from '@angular/common/http';
 import { NgbActiveModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConsultaComponent } from './views/material/consulta/consulta.component';
 import { ManterComponent } from './views/material/manter/manter.component';
 import { ManutencaoComponent } from './views/manutencao/manutencao.component';
 import { ContainerPaginaComponent } from './componentes/container-pagina/container-pagina.component';
-import { HttpTokenInterceptor } from './interceptors/http.token.interceptor';
-import { JwtService } from './services/jwt.service';
 import { CommonModule } from '@angular/common';
 import { StaticInjector } from 'src/app/services/static-injector';
 import { Injector } from '@angular/core';
@@ -39,7 +36,6 @@ import { ClienteManterComponent } from './views/cliente/manter/cliente-manter/cl
 import { FitrosComponent } from './views/cliente/filtros/fitros/fitros.component';
 import { MesreferenciaConsultaComponent } from './views/mesreferencia/consulta/mesreferencia-consulta/mesreferencia-consulta.component';
 import { MesreferenciaManterComponent } from './views/mesreferencia/manter/mesreferencia-manter/mesreferencia-manter.component';
-import { LOCALE_ID } from '@angular/core';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RoteiroConsultaComponent } from './views/roteiro/consulta/roteiro-consulta/roteiro-consulta.component';
 import { RoteiroManterComponent } from './views/roteiro/manter/roteiro-manter/roteiro-manter.component';
@@ -54,6 +50,19 @@ import { UsuarioManterComponent } from './views/usuario/manter/usuario-manter/us
 import { PerfilManterComponent } from './views/perfil/manter/perfil-manter/perfil-manter.component';
 import { OsConsultaComponent } from './views/os/consulta/os-consulta/os-consulta.component';
 import { OsManterComponent } from './views/os/manter/os-manter/os-manter.component';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './_interceptors/TokenInterceptor';
+
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { LOCALE_ID } from '@angular/core';
+import { ManutencaoGenericaComponent } from './views/manutencao-generica/manutencao-generica.component';
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -88,7 +97,8 @@ import { OsManterComponent } from './views/os/manter/os-manter/os-manter.compone
     UsuarioManterComponent,
     PerfilManterComponent,
     OsConsultaComponent,
-    OsManterComponent   
+    OsManterComponent,
+    ManutencaoGenericaComponent   
   ],
   imports: [
     BrowserModule,
@@ -103,15 +113,20 @@ import { OsManterComponent } from './views/os/manter/os-manter/os-manter.compone
     CurrencyMaskModule,
     TextMaskModule,
     BrowserAnimationsModule,    
-    BsDatepickerModule.forRoot()      
+    BsDatepickerModule.forRoot(),
+    Ng2SearchPipeModule, //registrando biblioteca Ng2SearchFilter
+    NgxMaskModule.forRoot() //registrando biblioteca NgxMask      
   ],
   exports: [ManutencaoComponent],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pt-BR' },     
-    CookieService,
-    JwtService,
-    NgbActiveModal],         
-  bootstrap: [AppComponent],   
+    {       
+      provide: HTTP_INTERCEPTORS,     
+      useClass: TokenInterceptor,
+      multi: true },  
+      NgbActiveModal, { provide: LOCALE_ID, useValue: 'pt-BR'}],
+    bootstrap: [AppComponent]    
+    // { provide: LOCALE_ID, useValue: 'pt'}
+
 })
 export class AppModule { 
   constructor(private injector: Injector) {

@@ -1,1 +1,471 @@
-<p>os-manter works!</p>
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">{{titulo}}</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close('cancel')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <label class="col-form-label-sm" for="cliente">
+            Selecione o Cliente:
+          </label>
+          <ng-select
+            [ngStyle]="{'fontSize': '11px'}"
+            id="cliente"
+            name="cliente"
+            [virtualScroll]="true"
+            [items]="clientes"
+            bindLabel="nomeCompleto_RazaoSocial"
+            bindValue="cod_Cliente"
+            notFoundText="Nenhuma opção disponível"
+            [searchable]="true"
+            [clearable]="false"
+            placeholder="Selecione uma opção"
+            [formControl]="clienteFormControl"
+            [ngbTooltip]="validacaoCliente"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(clienteFormControl)"
+          >
+          </ng-select>
+          <ng-template #validacaoCliente>
+            <span *ngIf="clienteFormControl.invalid && clienteFormControl.errors.required">
+              Campo Obrigatório.
+            </span>
+          </ng-template>
+        </div>
+      </div>    
+  
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <label class="col-form-label-sm" for="turno">
+            Selecione Mês Referência:
+          </label>
+          <ng-select
+            [ngStyle]="{'fontSize': '11px'}"
+            id="turno"
+            name="turno"
+            [virtualScroll]="true"
+            [items]="mesReferenciaList"
+            bindLabel="mesAno"
+            bindValue="cod_MesReferencia"
+            notFoundText="Nenhuma opção disponível"
+            [searchable]="true"
+            [clearable]="false"
+            placeholder="Selecione uma opção"
+            placement="top-left"
+            [formControl]="mesRefFormControl"
+            [ngbTooltip]="validacaoTurno"
+            [disableTooltip]="desabilitaTooltip(mesRefFormControl)"
+          >
+          </ng-select>
+          <ng-template #validacaoTurno>
+            <span *ngIf="mesRefFormControl.invalid && mesRefFormControl.errors.required">
+              Campo Obrigatório.
+            </span>
+          </ng-template>
+        </div>
+      </div>
+  
+      
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <label class="col-form-label-sm" for="motorista">
+            Selecione o Motorista:
+          </label>
+          <ng-select
+            [ngStyle]="{'fontSize': '11px'}"
+            id="motorista"
+            name="motorista"
+            [virtualScroll]="true"
+            [items]="motoristas"
+            bindLabel="nome"
+            bindValue="cod_Motorista"
+            notFoundText="Nenhuma opção disponível"
+            [searchable]="true"
+            [clearable]="false"
+            placeholder="Selecione uma opção"
+            placement="top-left"
+            [formControl]="motoristaFormControl"
+            [ngbTooltip]="validacaoMotorista"
+            [disableTooltip]="desabilitaTooltip(motoristaFormControl)"
+          >
+          </ng-select>
+          <ng-template #validacaoMotorista>
+            <span *ngIf="motoristaFormControl.invalid && motoristaFormControl.errors.required">
+              Campo Obrigatório.
+            </span>
+          </ng-template>
+        </div>
+      </div>
+  
+
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <label class="col-form-label-sm" for="material">
+            Selecione o Material:
+          </label>
+          <ng-select
+            [ngStyle]="{'fontSize': '11px'}"
+            id="material"
+            name="material"
+            [virtualScroll]="true"
+            [items]="materiais"
+            bindLabel="descricao"
+            bindValue="cod_Material"
+            notFoundText="Nenhuma opção disponível"
+            [searchable]="true"
+            [clearable]="false"
+            placeholder="Selecione uma opção"
+            placement="top-left"
+            [formControl]="materialFormControl"
+            [ngbTooltip]="validacaoMaterial"
+            [disableTooltip]="desabilitaTooltip(materialFormControl)"
+          >
+          </ng-select>
+          <ng-template #validacaoMaterial>
+            <span *ngIf="materialFormControl.invalid && materialFormControl.errors.required">
+              Campo Obrigatório.
+            </span>
+          </ng-template>
+        </div>
+      </div>
+  
+      <br>
+      <br>
+
+      
+      <div class="row mt-3">     
+        <div class="col-md-6">
+          <label class="col-form-label-sm" for="dataPaga">
+            Data Coleta:
+          </label>
+          <div class="form-group">
+            <div class="form-inline">
+          <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="DD/MM/AAAA"
+                rInputMask="99/99/9999"
+                name="dataPaga"
+                id="dataPaga"
+                [formControl]="dataColetaFormControl"
+                [bsConfig]="{ showWeekNumbers: false }"
+                bsDatepicker
+                #data="bsDatepicker"
+                style="width: 100px;"
+                placement="top-left top-right bottom-left bottom-right"
+                [disableTooltip]="desabilitaTooltip(dataColetaFormControl)"
+                [ngbTooltip]="validacao" />
+              <div class="input-group-append">
+                <button
+                  type="button"
+                  class="btn btn btn-outline-secondary calendar"
+                  (click)="data.toggle()"
+                  [attr.aria-expanded]="data.isOpen"
+                  
+                  >
+                  <i class="far fa-calendar-alt"></i>
+                </button>
+              </div>
+              <ng-template #validacao>
+                <span *ngIf="dataColetaFormControl.invalid && dataColetaFormControl.errors.required">
+                  Campo obrigatório
+                </span>
+                <span *ngIf="dataColetaFormControl.invalid && dataColetaFormControl.errors.validDate">
+                  Data inválida
+                </span>
+                <span
+                  *ngIf="dataColetaFormControl.invalid && dataColetaFormControl.errors.bsDate && dataColetaFormControl.errors.bsDate.invalid">
+                  Data inválida
+                </span>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>       
+
+      
+
+  
+      <div class="row">
+        <div class="col-md-5">
+          <label for="coletado" class="col-form-label-sm"
+            >Coletado:</label
+          >
+        </div>
+        <div class="col-md-7">
+          <table>
+            <tbody>
+              <tr>
+                <td style="width: 80px;">
+                  <div class="form-check form-check-inline">
+                    <input
+                      type="radio"
+                      name="coletado"
+                      [formControl]="coletadoFlagFormControl"
+                      [value]="true"
+                      id="coletado-sim"
+                      class="form-check-input"
+                    />
+                    <label
+                      for="segunda"
+                      class="form-check-label col-form-label-sm"
+                      >Sim</label
+                    >
+                  </div>
+                </td>
+                <td style="width: 80px;">
+                  <div class="form-check form-check-inline">
+                    <input
+                      type="radio"
+                      name="coletado"
+                      [formControl]="coletadoFlagFormControl"
+                      [value]="false"
+                      id="coletado-nao"
+                      class="form-check-input"
+                      [checked]="true"
+                    />
+                    <label
+                      for="segunda"
+                      class="form-check-label col-form-label-sm"
+                      >Não</label
+                    >
+                  </div>
+                </td>            
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+      
+      <div class="row">
+        <div class="col-md-5">
+          <label for="email" class="col-form-label-sm"
+            >Enviar Email:</label
+          >
+        </div>
+        <div class="col-md-7">
+          <table>
+            <tbody>
+              <tr>
+                <td style="width: 80px;">
+                  <div class="form-check form-check-inline">
+                    <input
+                      type="radio"
+                      name="email"
+                      [formControl]="envioEmailFlagFormControl"
+                      [value]="true"
+                      id="email-sim"
+                      class="form-check-input"
+                    />
+                    <label
+                      for="terca"
+                      class="form-check-label col-form-label-sm"
+                      >Sim</label
+                    >
+                  </div>
+                </td>
+                <td style="width: 80px;">
+                  <div class="form-check form-check-inline">
+                    <input
+                      type="radio"
+                      name="email"
+                      [formControl]="envioEmailFlagFormControl"
+                      [value]="false"
+                      id="email-nao"
+                      class="form-check-input"
+                      [checked]="true"
+                    />
+                    <label
+                      for="terca"
+                      class="form-check-label col-form-label-sm"
+                      >Não</label
+                    >
+                  </div>
+                </td>            
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>   
+      
+  
+      <br>
+      <br>
+      
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <label class="col-form-label-sm font-weight-bold" for="comentario">
+            Motivo Cancelamento:
+          </label>
+          <textarea
+            rows="5"
+            class="form-control form-control-sm"
+            id="cancelamento" name="cancelamento" maxlength="800"
+            [formControl]="motivoCancelamentoFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(motivoCancelamentoFormControl)"
+            [ngbTooltip]="validacaoTexto">
+          </textarea>
+          <ng-template #validacaoTexto>
+            <span *ngIf="motivoCancelamentoFormControl.invalid && motivoCancelamentoFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="motivoCancelamentoFormControl.invalid && motivoCancelamentoFormControl.errors.maxlength">
+               A Motivo cancelamento não pode ter mais de 800 caracteres
+            </span>
+            </ng-template>
+            <span style="font-size:11px;" class="float-right">
+              {{ 800 - motivoCancelamentoFormControl.value?.length  }}/800 caracteres
+               restantes </span>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="row mt-3">     
+        <div class="col-md-6">
+          <label class="col-form-label-sm" for="dataPaga">
+            Data Cancelamento:
+          </label>
+          <div class="form-group">
+            <div class="form-inline">
+          <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="DD/MM/AAAA"
+                rInputMask='dd/MM/yyyy' 
+                name="dataCancelamento"
+                id="dataCancelamento"
+                [formControl]="dataCancelamentoFormControl"
+                [bsConfig]="{ showWeekNumbers: false }"
+                bsDatepicker
+                #data="bsDatepicker"
+                style="width: 100px;"
+                placement="top-left top-right bottom-left bottom-right"
+                [disableTooltip]="desabilitaTooltip(dataCancelamentoFormControl)"
+                [ngbTooltip]="validacao" />
+              <div class="input-group-append">
+                <button
+                  type="button"
+                  class="btn btn btn-outline-secondary calendar"
+                  (click)="data.toggle()"
+                  [attr.aria-expanded]="data.isOpen"
+                  
+                  >
+                  <i class="far fa-calendar-alt"></i>
+                </button>
+              </div>
+              <ng-template #validacao>
+                <span *ngIf="dataColetaFormControl.invalid && dataColetaFormControl.errors.required">
+                  Campo obrigatório
+                </span>
+                <span *ngIf="dataColetaFormControl.invalid && dataColetaFormControl.errors.validDate">
+                  Data inválida
+                </span>
+                <span
+                  *ngIf="dataColetaFormControl.invalid && dataColetaFormControl.errors.bsDate && dataColetaFormControl.errors.bsDate.invalid">
+                  Data inválida
+                </span>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>       
+
+      <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="nome">
+            <b>Hora Entrada:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="entrada"
+            name="entrada"
+            maxlength="50"            
+            [formControl]="entradaFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(entradaFormControl)"
+            [ngbTooltip]="entradaFormControl"
+            maxlength="50" />
+          <ng-template #validacaoEntrada>
+            <span *ngIf="entradaFormControl.invalid && entradaFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="entradaFormControl.invalid && entradaFormControl.errors.maxlength">
+              O nome não pode ter mais de 50 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+      
+      <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="nome">
+            <b>Hora Saída:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="saida"
+            name="saida"
+            maxlength="50"            
+            [formControl]="saidaFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(saidaFormControl)"
+            [ngbTooltip]="saidaFormControl"
+            maxlength="50" />
+          <ng-template #validacaoEntrada>
+            <span *ngIf="saidaFormControl.invalid && saidaFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="saidaFormControl.invalid && saidaFormControl.errors.maxlength">
+              O nome não pode ter mais de 50 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">
+          <label class="col-form-label-sm" for="nome">
+            <b>Placa:</b>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="placa"
+            name="placa"
+            maxlength="50"            
+            [formControl]="placaFormControl"
+            placement="top-left"
+            [disableTooltip]="desabilitaTooltip(placaFormControl)"
+            [ngbTooltip]="placaFormControl"
+            maxlength="50" />
+          <ng-template #validacaoplaca>
+            <span *ngIf="placaFormControl.invalid && placaFormControl.errors.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="placaFormControl.invalid && placaFormControl.errors.maxlength">
+              O nome não pode ter mais de 50 caracteres
+            </span>
+          </ng-template>
+        </div>
+      </div>
+      
+    
+  
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link" data-dismiss="modal" (click)="activeModal.close('cancel')">Cancelar</button>
+      <button type="button" class="btn btn-primary" (click)="onSubmit()" >Confirmar</button>
+    </div>
+  </div>
+  
+  
+  
+  

@@ -16,7 +16,7 @@ export class RoteiroConsultaComponent implements OnInit {
 
 
   titulo: string = 'Roteiro';
-  breadcrump: string = 'Cadastros > Roteiro';
+  breadcrump: string = 'Cadastro > Roteiro';
   tituloLista: string = 'Roteiro';
   tituloAdicionar: string = 'Adicionar Roteiro';
   pagina: number = 1;
@@ -28,19 +28,19 @@ export class RoteiroConsultaComponent implements OnInit {
   modal: any = RoteiroManterComponent;
   colunas: Array<ColunaGenerica> = [
     new ColunaGenerica('ID', 'cod_Roteiro', true, '2%', 'cod_Roteiro'),
-    new ColunaGenerica('Cliente', 'cliente', true, '30%', 'cliente'),
+    new ColunaGenerica('Cliente', 'cliente', true, '20%', 'cliente'),
     new ColunaGenerica('Rota', 'rota', true, '2%', 'rota'),
     new ColunaGenerica('Turno', 'turno', true, '2%', 'turno'),
-    new ColunaGenerica('Endereço', 'endereco', true, '10%', 'endereco'),
-    new ColunaGenerica('Motorista', 'motorista', true, '20%', 'motorista'),
-    new ColunaGenerica('Seg', 'segunda', true, '2%', 'segunda'),
-    new ColunaGenerica('Ter', 'terca', true, '2%', 'terca'),
-    new ColunaGenerica('Qua', 'quarta', true, '2%', 'quarta'),
-    new ColunaGenerica('Qui', 'quinta', true, '2%', 'quinta'),
-    new ColunaGenerica('Sex', 'sexta', true, '2%', 'sexta'),
-    new ColunaGenerica('Sab', 'sabado', true, '2%', 'sabado'),
-    new ColunaGenerica('Dom', 'domingo', true, '2%', 'domingo'),
-    new ColunaGenerica('Observação', 'observacao', true, '7%', 'observacao'),
+    new ColunaGenerica('Endereço', 'endereco', true, '20%', 'endereco'),
+    new ColunaGenerica('Motorista', 'motorista', true, '10%', 'motorista'),
+    new ColunaGenerica('Seg', 'segunda', true, '5%', 'segunda'),
+    new ColunaGenerica('Ter', 'terca', true, '5%', 'terca'),
+    new ColunaGenerica('Qua', 'quarta', true, '5%', 'quarta'),
+    new ColunaGenerica('Qui', 'quinta', true, '5%', 'quinta'),
+    new ColunaGenerica('Sex', 'sexta', true, '5%', 'sexta'),
+    new ColunaGenerica('Sab', 'sabado', true, '5%', 'sabado'),
+    new ColunaGenerica('Dom', 'domingo', true, '5%', 'domingo'),
+    
   ];
   
 
